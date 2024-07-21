@@ -206,6 +206,8 @@ function switch_to_dark_mode() {
     source ~/.zshrc
 }
 
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # Aliases for easy switching
 alias light='switch_to_light_mode'
 alias dark='switch_to_dark_mode'
@@ -223,6 +225,7 @@ function weather() {
 }
 
 source ~/dev/cash/cash.sh
+source ~/dev/hideme_check/hidemecheck.sh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
