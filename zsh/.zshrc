@@ -153,7 +153,7 @@ alias vim='nvim'
 
 alias fvim='result=$(fzf --preview="bat --color=always {}") && [ -n "$result" ] && nvim "$result"'
 alias fcode='result=$(fzf --preview="bat --color=always {}") && [ -n "$result" ] && code "$result"'
-alias fzf='fzf-tmux -p'
+alias fzf='fzf --tmux 80%,80%'
 
 alias dev='cd ~/dev'
 
@@ -170,6 +170,7 @@ alias mvn22='export JAVA_HOME=/opt/homebrew/Cellar/openjdk/22.0.1 && export PATH
 
 alias lux='ssh root@194.15.36.188'
 alias netcup='ssh hosting178047@ae89a.netcup.net'
+alias netcupfiles='cd /Users/simon/Library/Containers/net.langui.FTPMounterLite/Data/.FTPVolumes/Netcup' # this only works with FTPMounterLite connected to the netcup server
 alias containerer='ssh simon@192.168.178.91'
 
 # Function to switch to light mode
@@ -221,11 +222,15 @@ alias cd='z'
 function weather() {
     location="${*:-Dombühl}"
     location="${location// /+}"
-    curl -s "wttr.in/$location" | sed '1d;$d;$d'
+    ~/dev/cli_cacher/cli-cache ~/dev/cli_cacher/cache/ curl -s "wttr.in/$location" | sed '1d;$d;$d'
 }
 
 source ~/dev/cash/cash.sh
 source ~/dev/hideme_util/hideme.sh
+
+alias ccurl='~/dev/cli_cacher/cli-cache ~/dev/cli_cacher/cache/ curl'
+
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
