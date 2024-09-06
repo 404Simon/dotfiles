@@ -156,6 +156,7 @@ alias fcode='result=$(fzf --preview="bat --color=always {}") && [ -n "$result" ]
 alias fzf='fzf --tmux 80%,80%'
 
 alias dev='cd ~/dev'
+alias obsidian='cd /Users/simon/Library/Mobile Documents/iCloud~md~obsidian/Documents/SimonsVault && result=$(rg --files --hidden --glob "!.git/**" --glob "!.obsidian/**" | fzf --preview="bat --color=always {}") && [ -n "$result" ] && nvim "$result"'
 
 alias p='pbpaste'
 alias c='pbcopy'
@@ -229,6 +230,7 @@ source ~/dev/cash/cash.sh
 source ~/dev/hideme_util/hideme.sh
 
 alias ccurl='~/dev/cli_cacher/cli-cache ~/dev/cli_cacher/cache/ curl'
+alias chtsh='~/dev/chtsh/cht.sh'
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
