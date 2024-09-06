@@ -159,7 +159,7 @@ require('lazy').setup({
   --
   --  This is equivalent to:
   --    require('Comment').setup({})
-  require 'plugins.obsidian',
+  require 'custom.plugins.obsidian',
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
