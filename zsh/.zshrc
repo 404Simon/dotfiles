@@ -150,6 +150,10 @@ export BAT_THEME=tokyonight_night
 
 
 alias vim='nvim'
+alias fml='bash ~/dev/fml/fml'
+
+# i use atac as an api client like postman or insomnia, i need to declare the keybindings in an env var to use vim bindings
+export ATAC_KEY_BINDINGS="/Users/simon/dev/atac/keybindings.toml"
 
 alias fvim='result=$(fzf --preview="bat --color=always {}") && [ -n "$result" ] && nvim "$result"'
 alias fcode='result=$(fzf --preview="bat --color=always {}") && [ -n "$result" ] && code "$result"'
