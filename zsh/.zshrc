@@ -79,22 +79,19 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  tmux
 )
+
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='/opt/homebrew/bin/nvim'
+fi
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+export TERM=xterm-256color
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -119,7 +116,6 @@ export PATH="/Applications/IntelliJ IDEA.app/Contents/MacOS:$PATH"
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 # -- Use fd instead of fzf --
-
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
@@ -155,12 +151,13 @@ alias fml='bash ~/dev/fml/fml'
 # i use atac as an api client like postman or insomnia, i need to declare the keybindings in an env var to use vim bindings
 export ATAC_KEY_BINDINGS="/Users/simon/dev/atac/keybindings.toml"
 
-alias fvim='result=$(fzf --preview="bat --color=always {}") && [ -n "$result" ] && nvim "$result"'
+alias fvim='result=$(rg --files --hidden --glob "!.git/**" --glob "!.obsidian/**" | fzf --preview="bat --color=always {}") && [ -n "$result" ] && nvim "$result"'
 alias fcode='result=$(fzf --preview="bat --color=always {}") && [ -n "$result" ] && code "$result"'
 alias fzf='fzf --tmux 80%,80%'
 
 alias dev='cd ~/dev'
 alias obsidian='cd /Users/simon/Library/Mobile Documents/iCloud~md~obsidian/Documents/SimonsVault && result=$(rg --files --hidden --glob "!.git/**" --glob "!.obsidian/**" | fzf --preview="bat --color=always {}") && [ -n "$result" ] && nvim "$result"'
+alias o='source ~/dotfiles/obsidian_scripts.sh'
 
 alias p='pbpaste'
 alias c='pbcopy'
