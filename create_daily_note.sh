@@ -1,30 +1,24 @@
 #!/bin/bash
 
-vaultpath="/Users/simon/Library/Mobile Documents/iCloud~md~obsidian/Documents/SimonsVault"
-
 # Get the current date in YYYY-MM-DD format
 TODAY=$(date +"%Y-%m-%d")
-FILE_PATH="$vaultpath/Journal/$TODAY.md"
+FILE_PATH="$OBSIDIAN_VAULT/Journal/$TODAY.md"
 
 # Template content to be injected into a new file
 TEMPLATE="# Daily Note - $TODAY
 
-## Tasks
-- [ ] Task 1
-- [ ] Task 2
+[[Daily_Notes]]
 
-## Notes
-- Note 1
-- Note 2
+
 
 "
 
 # Check if the file exists
 if [ -f "$FILE_PATH" ]; then
-    echo "File already exists. Opening $FILE_PATH..."
+    echo "File already exists. Opening it now!"
 else
-    echo "File does not exist. Creating $FILE_PATH..."
+    echo "File does not exist. Creating a new one!"
     echo "$TEMPLATE" > "$FILE_PATH"
 fi
 
-nvim "$FILE_PATH"
+# nvim +5 "$FILE_PATH"

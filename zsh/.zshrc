@@ -144,12 +144,17 @@ export FZF_DEFAULT_OPTS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${
 
 export BAT_THEME=tokyonight_night
 
+# there are a bunch of environment vars for gum, so i put them in a file and source it here
+source ~/gum_env.sh
+
 
 alias vim='nvim'
 alias fml='bash ~/dev/fml/fml'
 
 # i use atac as an api client like postman or insomnia, i need to declare the keybindings in an env var to use vim bindings
 export ATAC_KEY_BINDINGS="/Users/simon/dev/atac/keybindings.toml"
+
+export OBSIDIAN_VAULT="/Users/simon/Library/Mobile Documents/iCloud~md~obsidian/Documents/SimonsVault"
 
 alias fvim='result=$(rg --files --hidden --glob "!.git/**" --glob "!.obsidian/**" | fzf --preview="bat --color=always {}") && [ -n "$result" ] && nvim "$result"'
 alias fcode='result=$(fzf --preview="bat --color=always {}") && [ -n "$result" ] && code "$result"'
@@ -226,6 +231,8 @@ function weather() {
     location="${location// /+}"
     ~/dev/cli_cacher/cli-cache ~/dev/cli_cacher/cache/ curl -s "wttr.in/$location" | sed '1d;$d;$d'
 }
+
+alias fif='bash ~/dotfiles/fif.sh'
 
 source ~/dev/cash/cash.sh
 source ~/dev/hideme_util/hideme.sh
