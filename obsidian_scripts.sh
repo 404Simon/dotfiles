@@ -37,6 +37,16 @@ function obsidiandaily() {
     nvim +5 "$FILE_PATH"
 }
 
+function obsidianyesterday() {
+    YESTERDAY=$(date -v-1d +"%Y-%m-%d")
+    FILE_PATH="$OBSIDIAN_VAULT/Journal/$YESTERDAY.md"
+    if [ -f "$FILE_PATH" ]; then
+        nvim +5 "$FILE_PATH"
+    else
+        echo "No note for yesterday"
+    fi
+}
+
 function obsidianscript() {
     nvim ~/dotfiles/obsidian_scripts.sh
 }
@@ -49,7 +59,9 @@ function obsidiannew() {
 function obsidianfif() {
     cd "$OBSIDIAN_VAULT"
     result=$(bash ~/dotfiles/fif.sh)
-    nvim "$result"
+    if [ ! -z "$result" ]; then
+        nvim "$result"
+    fi
 }
 
 function obsidianappend() {
@@ -69,7 +81,11 @@ function obsidiansetup() {
 
 function obsidianharpoon() {
     harpooned=$(cat ~/.shell_harpoon)
-    nvim +3 "$harpooned"
+    if [ ! -z "$harpooned" ]; then
+        nvim +3 "$harpooned"
+    else
+        echo "No file harpooned"
+    fi
 }
 
 cmds=(
@@ -78,6 +94,7 @@ cmds=(
     'fvim - search n edit'
     'journal - Admire your journal'
     'daily - Open your daily note'
+    'yesterday - Open yesterdays daily note'
     'script - Modify this script'
     'new - Create a new note'
     'fif - Find in files'

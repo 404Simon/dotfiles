@@ -8,7 +8,14 @@ if [ "$option" == "new" ]; then
         exit 1
     fi
 else
-    file=$(gum file "$OBSIDIAN_VAULT")
+    cd "$OBSIDIAN_VAULT"
+    file=$(rg --files --hidden --glob "!.git/**" --glob "!.obsidian/**" | fzf --preview="bat --color=always {}") && [ -n "$result" ] && nvim "$result"
+    file=$OBSIDIAN_VAULT/$file
+    # if file doesnt end in .md
+    if [[ ! "$file" == *.md ]]; then
+        echo "No file selected. Exiting."
+        exit 1
+    fi
 fi
 
 # check if ~/.shell_harpoon exists, if yes then remove it
