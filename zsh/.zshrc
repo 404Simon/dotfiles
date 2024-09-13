@@ -151,6 +151,9 @@ source ~/gum_env.sh
 alias vim='nvim'
 alias fml='bash ~/dev/fml/fml'
 
+# alias to use ollama with mods and a tmux popup
+alias llm='~/dotfiles/llama.sh'
+
 # i use atac as an api client like postman or insomnia, i need to declare the keybindings in an env var to use vim bindings
 export ATAC_KEY_BINDINGS="/Users/simon/dev/atac/keybindings.toml"
 
@@ -161,8 +164,8 @@ alias fcode='result=$(fzf --preview="bat --color=always {}") && [ -n "$result" ]
 alias fzf='fzf --tmux 80%,80%'
 
 alias dev='cd ~/dev'
-alias obsidian='cd /Users/simon/Library/Mobile Documents/iCloud~md~obsidian/Documents/SimonsVault && result=$(rg --files --hidden --glob "!.git/**" --glob "!.obsidian/**" | fzf --preview="bat --color=always {}") && [ -n "$result" ] && nvim "$result"'
 alias o='source ~/dotfiles/obsidian_scripts.sh'
+alias trans='~/dotfiles/translate.sh'
 
 alias p='pbpaste'
 alias c='pbcopy'
@@ -245,3 +248,6 @@ alias chtsh='~/dev/chtsh/cht.sh'
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Created by `pipx` on 2024-09-11 10:34:37
+export PATH="$PATH:/Users/simon/.local/bin"

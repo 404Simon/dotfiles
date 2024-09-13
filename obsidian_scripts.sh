@@ -53,7 +53,12 @@ function obsidianscript() {
 
 function obsidiannew() {
     cd "$OBSIDIAN_VAULT"
-    nvim +3 "$(~/dotfiles/create_new_note.sh)"
+    result=$(~/dotfiles/create_new_note.sh)
+    if [[ $result == *.md ]]; then
+        nvim +3 "$result"
+    else
+        echo "No file created"
+    fi
 }
 
 function obsidianfif() {
