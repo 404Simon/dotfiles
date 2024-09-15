@@ -62,6 +62,11 @@ return {
         quote = {
           icon = '┃',
         },
+        pipe_table = {
+          enabled = true,
+          preset = 'round',
+          style = 'full',
+        },
       }
     end,
   },
