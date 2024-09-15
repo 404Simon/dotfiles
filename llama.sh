@@ -1,5 +1,5 @@
 function inputwindow() {
-    tmux popup -E 'gum write --height 22 > ~/.llm-prompt'
+    tmux popup -E 'gum write --height $(($(tput lines) -1)) > ~/.llm-prompt'
 }
 
 option=$(gum choose "New" "Continue Last" "Show Last" "Continue Specific" "Browse" "Copy" )
