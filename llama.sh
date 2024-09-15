@@ -2,7 +2,7 @@ function inputwindow() {
     tmux popup -E 'gum write --height 22 > ~/.llm-prompt'
 }
 
-option=$(gum choose "New" "Continue Last" "Show Last" "Continue Specific" "Browse" )
+option=$(gum choose "New" "Continue Last" "Show Last" "Continue Specific" "Browse" "Copy" )
 
 if [ "$option" == "New" ]; then
     inputwindow
@@ -31,4 +31,7 @@ elif [ "$option" == "Continue Specific" ]; then
         exit 0
     fi
     mods --continue $(pbpaste) "$input"
+elif [ "$option" == "Copy" ]; then
+    mods --list
+    mods -r -s $(pbpaste) | pbcopy
 fi
