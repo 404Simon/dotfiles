@@ -93,6 +93,19 @@ function obsidianharpoon() {
     fi
 }
 
+function obsidianrecent() {
+    cd "$OBSIDIAN_VAULT"
+    file=$(find . -type d \( -name .git -o -name .obsidian \) -prune -o -type f -exec stat -f '%m %N' {} + | \
+    sort -n -r | \
+    head -n 20 | \
+    cut -d' ' -f2- | \
+    fzf --preview 'bat --color=always {}')
+    if [ ! -z "$files" ]; then
+        nvim "$file"
+    fi
+
+}
+
 cmds=(
     'cd - cd to your vault'
     'glow - Glow your vault'
@@ -106,6 +119,7 @@ cmds=(
     'append - append to your daily note'
     'setup - setup shooting device'
     'harpoon - open harpooned file'
+    'recent - open recent file'
 )
 
 selected=$(printf "%s\n" "${cmds[@]}" | fzf --prompt="What do you want to do? :) ")
