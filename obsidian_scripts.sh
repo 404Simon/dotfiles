@@ -15,7 +15,7 @@ function obsidiancd() {
 
 function obsidianglow() {
     cd $OBSIDIAN_VAULT
-    glow
+    glow -s "tokyo-night"
     back
 }
 
@@ -61,14 +61,6 @@ function obsidiannew() {
     fi
 }
 
-function obsidianfif() {
-    cd "$OBSIDIAN_VAULT"
-    result=$(bash ~/dotfiles/fif.sh)
-    if [ ! -z "$result" ]; then
-        nvim "$result"
-    fi
-}
-
 function obsidianappend() {
     ~/dotfiles/create_daily_note.sh > /dev/null
     TODAY=$(date +"%Y-%m-%d")
@@ -103,7 +95,11 @@ function obsidianrecent() {
     if [ ! -z "$files" ]; then
         nvim "$file"
     fi
+}
 
+function obsidiangrep() {
+    cd "$OBSIDIAN_VAULT"
+    nvim -c "lua require('telescope.builtin').live_grep()"
 }
 
 cmds=(
@@ -115,11 +111,11 @@ cmds=(
     'yesterday - Open yesterdays daily note'
     'script - Modify this script'
     'new - Create a new note'
-    'fif - Find in files'
     'append - append to your daily note'
     'setup - setup shooting device'
     'harpoon - open harpooned file'
     'recent - open recent file'
+    'grep - grep over all files'
 )
 
 selected=$(printf "%s\n" "${cmds[@]}" | fzf --prompt="What do you want to do? :) ")

@@ -32,6 +32,12 @@ vim.cmd [[
   augroup END
 ]]
 
+vim.filetype.add {
+  pattern = {
+    ['.*%.blade%.php'] = 'blade',
+  },
+}
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -54,13 +60,19 @@ require('lazy').setup {
   require 'custom.plugins.obsidian',
   require 'custom.plugins.images',
   require 'custom.plugins.harpoon',
+  require 'custom.plugins.laravel',
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
   {
-    {
-      'github/copilot.vim',
-    },
+    'github/copilot.vim',
+    init = function()
+      vim.api.nvim_create_autocmd('VimEnter', {
+        callback = function()
+          vim.cmd 'Copilot disable'
+        end,
+      })
+    end,
   },
   {
     'christoomey/vim-tmux-navigator',
@@ -414,6 +426,7 @@ require('lazy').setup {
         pyright = {},
         marksman = {},
         jsonls = {},
+        phpactor = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -500,7 +513,9 @@ require('lazy').setup {
         lua = { 'stylua' },
         go = { 'gofmt', 'goimports' },
         -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
+        python = { 'isort', 'black' },
+        php = { 'pretty-php' },
+        blade = { 'blade-formatter' },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
@@ -560,6 +575,9 @@ require('lazy').setup {
           end,
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
+
+        -- make blade filetype use php adn html snippets
+        luasnip.filetype_extend('blade', { 'php', 'html' }),
 
         -- For an understanding of why these mappings were
         -- chosen, you will need to read `:help ins-completion`
@@ -661,7 +679,7 @@ require('lazy').setup {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'latex', 'vim', 'vimdoc', 'go' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'latex', 'vim', 'vimdoc', 'go', 'php', 'html' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -680,6 +698,17 @@ require('lazy').setup {
       require('nvim-treesitter.install').prefer_git = true
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup(opts)
+
+      -- Add Blade parser configuration
+      local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
+      parser_config.blade = {
+        install_info = {
+          url = 'https://github.com/EmranMR/tree-sitter-blade',
+          files = { 'src/parser.c' },
+          branch = 'main',
+        },
+        filetype = 'blade',
+      }
 
       -- There are additional nvim-treesitter modules that you can use to interact
       -- with nvim-treesitter. You should go explore a few and see what interests you:
@@ -709,6 +738,14 @@ require('lazy').setup {
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   -- { import = 'custom.plugins' },
 }
+
+vim.api.nvim_create_user_command('DisableWarnings', function()
+  vim.diagnostic.config { virtual_text = false }
+end, {})
+
+vim.api.nvim_create_user_command('EnableWarnings', function()
+  vim.diagnostic.config { virtual_text = true }
+end, {})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

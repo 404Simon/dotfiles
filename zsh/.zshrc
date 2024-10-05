@@ -19,6 +19,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
   git
   tmux
+  direnv
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -36,6 +37,9 @@ export TERM=xterm-256color
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export PATH="/Applications/IntelliJ IDEA.app/Contents/MacOS:$PATH"
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+eval "$(laravel completion)"
+
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
@@ -71,9 +75,31 @@ export BAT_THEME=tokyonight_night
 # there are a bunch of environment vars for gum, so i put them in a file and source it here
 source ~/gum_env.sh
 
+alias work="timer 25m && terminal-notifier -message 'Pomodoro'\
+        -title 'Work Timer is up! Take a Break 😊'\
+        -appIcon '~/Pictures/pumpkin.png'\
+        -sound Crystal"
+        
+alias rest="timer 10m && terminal-notifier -message 'Pomodoro'\
+        -title 'Break is over! Get back to work 😬'\
+        -appIcon '~/Pictures/pumpkin.png'\
+        -sound Crystal"
+
 
 alias vim='nvim'
 alias fml='bash ~/dev/fml/fml'
+alias artisan='php artisan'
+jl() {
+    # Find all .ipynb files in the current directory
+    local notebooks=($(find . -maxdepth 1 -name "*.ipynb"))
+
+    # if there is exactly one notebook, open it, else just start jupyter
+    if [ ${#notebooks[@]} -eq 1 ]; then
+        jupyter lab "$notebooks"
+    else
+        jupyter lab
+    fi
+}
 
 # alias to use ollama with mods and a tmux popup
 alias llm='~/dotfiles/llama.sh'
@@ -87,7 +113,8 @@ alias fvim='result=$(rg --files --hidden --glob "!.git/**" --glob "!.obsidian/**
 alias fcode='result=$(fzf --preview="bat --color=always {}") && [ -n "$result" ] && code "$result"'
 alias fzf='fzf --tmux 80%,80%'
 
-alias dev='cd ~/dev'
+alias dev='eval "$(~/dotfiles/projectnavigator.sh)"'
+alias v='eval "$(~/dotfiles/vorlesungsnavigator.sh)"'
 alias o='source ~/dotfiles/obsidian_scripts.sh'
 alias trans='~/dotfiles/translate.sh'
 
