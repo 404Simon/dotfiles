@@ -55,7 +55,7 @@ function obsidiannew() {
     cd "$OBSIDIAN_VAULT"
     result=$(~/dotfiles/create_new_note.sh)
     if [[ $result == *.md ]]; then
-        nvim +3 "$result"
+        nvim +8 "$result"
     else
         echo "No file created"
     fi
@@ -92,7 +92,7 @@ function obsidianrecent() {
     head -n 20 | \
     cut -d' ' -f2- | \
     fzf --preview 'bat --color=always {}')
-    if [ ! -z "$files" ]; then
+    if [ ! -z "$file" ]; then
         nvim "$file"
     fi
 }

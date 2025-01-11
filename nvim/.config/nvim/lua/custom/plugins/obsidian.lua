@@ -35,6 +35,13 @@ return {
       vim.api.nvim_set_hl(0, 'RMdH6', { fg = colors.purple, bg = '' })
       -- vim.api.nvim_set_hl(0, 'RMdCodeBlock', { bg = '#434343' })
 
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = 'markdown',
+        callback = function()
+          vim.opt_local.lbr = true
+        end,
+      })
+
       return {
         heading = {
           icons = { '✱ ', '✲ ', '✤ ', '✣ ', '✸ ', '✳ ' },
@@ -48,7 +55,7 @@ return {
           },
         },
         latex = {
-          enabled = true,
+          enabled = false,
           converter = 'latex2text',
           highlight = 'RenderMarkdownMath',
           top_pad = 0,

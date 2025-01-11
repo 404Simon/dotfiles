@@ -27,3 +27,16 @@ snippet warning Add a Warning Box
 snippet caution Add a Caution Box
 	>[!CAUTION] ${1:Title}
 	> ${2:Body}
+
+snippet publish Add publish frontmatter for quartz static site generator
+	---
+	publish: true
+	---
+
+snippet frontmatter Add a fully fletched frontmatter for quartz static site generator
+	---
+	title: ${1}
+	description: ${2}
+	publish: ${3:true}
+	---
+

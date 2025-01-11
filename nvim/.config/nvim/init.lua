@@ -1,5 +1,71 @@
 require 'keymaps'
 
+vim.keymap.set('n', '<C-n>', '<cmd>cnext<cr>')
+vim.keymap.set('n', '<C-p>', '<cmd>cprev<cr>')
+
+-- Markdown-Heading erhöhen
+vim.keymap.set('v', '<leader>mh+', function()
+  -- Hol die Start- und Endzeilen des markierten Bereichs
+  local start_line = vim.fn.line "'<"
+  local end_line = vim.fn.line "'>"
+  -- Wende die Ersetzung auf den markierten Bereich an
+  vim.cmd(start_line .. ',' .. end_line .. 's/^\\(#\\+\\)/\\1#/g')
+end, { desc = 'Increase Markdown heading level' })
+
+-- Markdown-Heading verringern
+vim.keymap.set('v', '<leader>mh-', function()
+  -- Hol die Start- und Endzeilen des markierten Bereichs
+  local start_line = vim.fn.line "'<"
+  local end_line = vim.fn.line "'>"
+  -- Wende die Ersetzung auf den markierten Bereich an
+  vim.cmd(start_line .. ',' .. end_line .. 's/^\\(#\\+\\)#$//g')
+end, { desc = 'Decrease Markdown heading level' })
+
+------
+local function edge_playback_interactive(mode)
+  local text = ''
+  if mode == 'visual' then
+    -- Get selected text in visual mode
+    local start_pos = vim.fn.getpos "'<"
+    local end_pos = vim.fn.getpos "'>"
+    text = vim.fn.join(vim.fn.getline(start_pos[2], end_pos[2]), '\n')
+    text = text:sub(start_pos[3], end_pos[3])
+  else
+    -- Get the entire file content
+    text = vim.fn.join(vim.fn.getline(1, '$'), '\n')
+  end
+
+  -- Escape special characters
+  text = text:gsub('"', '\\"')
+
+  -- Construct the playback command
+  local cmd = 'edge-playback --text "' .. text .. '"'
+
+  -- Open a terminal for interactive playback
+  -- Use your preferred terminal emulator; here, tmux is used as an example
+  local terminal_cmd = 'tmux new-window -n "TTS Playback" \'' .. cmd .. "'"
+  print(terminal_cmd)
+  vim.fn.system(terminal_cmd)
+end
+
+-- Command to play the entire file interactively
+vim.api.nvim_create_user_command('PlayFileInteractive', function()
+  edge_playback_interactive 'file'
+end, {})
+
+-- Command to play the selected text interactively
+vim.api.nvim_create_user_command('PlaySelectionInteractive', function()
+  edge_playback_interactive 'visual'
+end, { range = true })
+
+-- Key mappings for convenience
+vim.api.nvim_set_keymap('n', '<leader>pi', ':PlayFileInteractive<CR>', { noremap = true })
+vim.api.nvim_set_keymap('v', '<leader>pi', ':<C-u>PlaySelectionInteractive<CR>', { noremap = true })
+
+------
+
+vim.opt.backupcopy = 'yes'
+
 -- use space instead of tab
 -- only do this on java and go
 vim.api.nvim_exec(
@@ -73,6 +139,13 @@ require('lazy').setup {
         end,
       })
     end,
+  },
+  {
+    'folke/snacks.nvim',
+    priority = 1000,
+    opts = {
+      dashboard = {},
+    },
   },
   {
     'christoomey/vim-tmux-navigator',
@@ -427,6 +500,7 @@ require('lazy').setup {
         marksman = {},
         jsonls = {},
         phpactor = {},
+        csharp_ls = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -512,10 +586,10 @@ require('lazy').setup {
       formatters_by_ft = {
         lua = { 'stylua' },
         go = { 'gofmt', 'goimports' },
-        -- Conform can also run multiple formatters sequentially
         python = { 'isort', 'black' },
         php = { 'pretty-php' },
         blade = { 'blade-formatter' },
+        -- markdown = { 'mdformat' },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.

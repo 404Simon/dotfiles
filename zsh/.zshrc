@@ -7,6 +7,8 @@ fi
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export PATH="$PATH:/Users/simon/.dotnet/tools"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -38,6 +40,8 @@ export TERM=xterm-256color
 
 export PATH="/Applications/IntelliJ IDEA.app/Contents/MacOS:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/dev/mdformat/env/bin:$PATH"
 eval "$(laravel completion)"
 
 
@@ -75,23 +79,24 @@ export BAT_THEME=tokyonight_night
 # there are a bunch of environment vars for gum, so i put them in a file and source it here
 source ~/gum_env.sh
 
-alias work="timer 25m && terminal-notifier -message 'Pomodoro'\
+alias work="timer 25m && terminal-notifier -message 'Santa 🎅🏼'\
         -title 'Work Timer is up! Take a Break 😊'\
         -appIcon '~/Pictures/pumpkin.png'\
         -sound Crystal"
-        
-alias rest="timer 10m && terminal-notifier -message 'Pomodoro'\
+
+alias chill="timer 7m && terminal-notifier -message 'Santa 🎅🏼'\
         -title 'Break is over! Get back to work 😬'\
         -appIcon '~/Pictures/pumpkin.png'\
         -sound Crystal"
 
 
 alias vim='nvim'
-alias fml='bash ~/dev/fml/fml'
 alias artisan='php artisan'
 jl() {
     # Find all .ipynb files in the current directory
     local notebooks=($(find . -maxdepth 1 -name "*.ipynb"))
+
+    echo "Vim Keybindings: https://pypi.org/project/jupyterlab-vim/"
 
     # if there is exactly one notebook, open it, else just start jupyter
     if [ ${#notebooks[@]} -eq 1 ]; then
@@ -106,6 +111,7 @@ alias llm='~/dotfiles/llama.sh'
 
 # i use atac as an api client like postman or insomnia, i need to declare the keybindings in an env var to use vim bindings
 export ATAC_KEY_BINDINGS="/Users/simon/dev/atac/keybindings.toml"
+export SAM_CLI_TELEMETRY=0
 
 export OBSIDIAN_VAULT="/Users/simon/Library/Mobile Documents/iCloud~md~obsidian/Documents/SimonsVault"
 
@@ -117,22 +123,28 @@ alias dev='eval "$(~/dotfiles/projectnavigator.sh)"'
 alias v='eval "$(~/dotfiles/vorlesungsnavigator.sh)"'
 alias o='source ~/dotfiles/obsidian_scripts.sh'
 alias trans='~/dotfiles/translate.sh'
+alias blog='~/dev/quartz/automation.sh'
 
 alias p='pbpaste'
 alias c='pbcopy'
 
 alias java8='/Users/simon/.sdkman/candidates/java/8.0.412-zulu/bin/java'
 alias java17='/opt/homebrew/opt/openjdk@17/bin/java'
-alias java22='/opt/homebrew/Cellar/openjdk/22.0.1/bin/java'
+alias java21='/opt/homebrew/Cellar/openjdk@21/21.0.5/bin/java'
 
 alias mvn8='export JAVA_HOME=/Users/simon/.sdkman/candidates/java/8.0.412-zulu && mvn'
 alias mvn17='export JAVA_HOME=/opt/homebrew/opt/openjdk@17 && export PATH=$JAVA_HOME/bin:$PATH && mvn'
-alias mvn22='export JAVA_HOME=/opt/homebrew/Cellar/openjdk/22.0.1 && export PATH=$JAVA_HOME/bin:$PATH && mvn'
+alias mvn21='export JAVA_HOME=/opt/homebrew/Cellar/openjdk@21/21.0.5 && export PATH=$JAVA_HOME/bin:$PATH && mvn'
 
 alias lux='ssh root@194.15.36.188'
 alias netcup='ssh hosting178047@ae89a.netcup.net'
 alias netcupfiles='cd /Users/simon/Library/Containers/net.langui.FTPMounterLite/Data/.FTPVolumes/Netcup' # this only works with FTPMounterLite connected to the netcup server
 alias containerer='ssh simon@192.168.178.91'
+alias vd='ssh vd@192.168.22.10'
+alias vdproxy='ssh -J simon@lowboy -p 2222 vd@localhost'
+
+alias horbvpn='sudo openvpn --config ~/Documents/clientmac-lehre.ovpn.txt'
+alias jltunnel='ssh -f -N -L 9999:localhost:9999 vd@192.168.22.10'
 
 # Function to switch to light mode
 function switch_to_light_mode() {
@@ -190,9 +202,15 @@ alias fif='bash ~/dotfiles/fif.sh'
 
 source ~/dev/cash/cash.sh
 source ~/dev/hideme_util/hideme.sh
+alias restarthide='bash ~/dev/hideme_util/restart.sh'
 
 alias ccurl='~/dev/cli_cacher/cli-cache ~/dev/cli_cacher/cache/ curl'
 alias chtsh='~/dev/chtsh/cht.sh'
+
+# GraalVM stuff
+export JAVA_HOME=/Users/simon/graalvm-jdk-21.0.5+9.1/Contents/Home
+export GRAALVM_HOME=/Users/simon/graalvm-jdk-21.0.5+9.1/Contents/Home
+export PATH=/Users/simon/graalvm-jdk-21.0.5+9.1/Contents/Home/bin:$PATH
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!

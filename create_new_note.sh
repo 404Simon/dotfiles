@@ -14,10 +14,11 @@ function new_obsidian_note() {
        echo "Filename already exists, please try again!"
        new_obsidian_note
     else
-        echo -e "# $articlename\n\n" > "$targetpath"
+        date=$(date +"%Y-%m-%d")
+        echo -e "---\ntitle: $articlename\ndate: $date\npublish: false\n---" > "$targetpath"
+        echo -e "# $articlename\n\n" >> "$targetpath"
         echo $targetpath
         return 0
-        # nvim +3 "$targetpath"
     fi
 }
 
