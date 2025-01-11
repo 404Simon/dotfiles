@@ -1,6 +1,7 @@
 theme = tokyonight
-background-opacity = 0.7
+background-opacity = 0.75
 background-blur-radius = 20
 macos-non-native-fullscreen = true
-font-family = "JetBrains Mono"
+gtk-titlebar = false
+font-family = "JetBrains Mono Nerd Font Mono"
 
