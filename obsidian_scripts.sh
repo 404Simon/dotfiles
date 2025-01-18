@@ -20,7 +20,7 @@ function obsidianglow() {
 }
 
 function obsidianfvim() {
-    cd /Users/simon/Library/Mobile Documents/iCloud~md~obsidian/Documents/SimonsVault
+    cd $OBSIDIAN_VAULT
     result=$(rg --files --hidden --glob "!.git/**" --glob "!.obsidian/**" | fzf --preview="bat --color=always {}") && [ -n "$result" ] && nvim "$result"
 }
 
@@ -87,13 +87,24 @@ function obsidianharpoon() {
 
 function obsidianrecent() {
     cd "$OBSIDIAN_VAULT"
-    file=$(find . -type d \( -name .git -o -name .obsidian \) -prune -o -type f -exec stat -f '%m %N' {} + | \
-    sort -n -r | \
-    head -n 20 | \
-    cut -d' ' -f2- | \
-    fzf --preview 'bat --color=always {}')
-    if [ ! -z "$file" ]; then
-        nvim "$file"
+    if [[ "$(uname)" == "Darwin" ]]; then
+        file=$(find . -type d \( -name .git -o -name .obsidian \) -prune -o -type f -exec stat -f '%m %N' {} + | \
+        sort -n -r | \
+        head -n 20 | \
+        cut -d' ' -f2- | \
+        fzf --preview 'bat --color=always {}')
+        if [ ! -z "$file" ]; then
+            nvim "$file"
+        fi
+    else
+        file=$(find . -type d \( -name .git -o -name .obsidian \) -prune -o -type f -printf '%T@ %p\n' | \
+        sort -n -r | \
+        head -n 20 | \
+        cut -d' ' -f2- | \
+        fzf --preview 'bat --color=always {}')
+        if [ ! -z "$file" ]; then
+            nvim "$file"
+        fi
     fi
 }
 
