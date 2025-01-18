@@ -12,7 +12,7 @@ return {
       workspaces = {
         {
           name = 'personal',
-          path = '~/Library/Mobile Documents/iCloud~md~obsidian/Documents/SimonsVault/',
+          path = '$OBSIDIAN_VAULT',
         },
       },
       ui = {
