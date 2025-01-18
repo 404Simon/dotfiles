@@ -79,6 +79,10 @@ export BAT_THEME=tokyonight_night
 # there are a bunch of environment vars for gum, so i put them in a file and source it here
 source ~/gum_env.sh
 
+if [[ "$(uname)" != "Darwin" ]]; then
+  source ~/dotfiles/open.sh
+fi
+
 alias work="timer 25m && terminal-notifier -message 'Santa 🎅🏼'\
         -title 'Work Timer is up! Take a Break 😊'\
         -appIcon '~/Pictures/pumpkin.png'\
