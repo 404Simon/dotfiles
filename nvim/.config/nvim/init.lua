@@ -3,67 +3,6 @@ require 'keymaps'
 vim.keymap.set('n', '<C-n>', '<cmd>cnext<cr>')
 vim.keymap.set('n', '<C-p>', '<cmd>cprev<cr>')
 
--- Markdown-Heading erhöhen
-vim.keymap.set('v', '<leader>mh+', function()
-  -- Hol die Start- und Endzeilen des markierten Bereichs
-  local start_line = vim.fn.line "'<"
-  local end_line = vim.fn.line "'>"
-  -- Wende die Ersetzung auf den markierten Bereich an
-  vim.cmd(start_line .. ',' .. end_line .. 's/^\\(#\\+\\)/\\1#/g')
-end, { desc = 'Increase Markdown heading level' })
-
--- Markdown-Heading verringern
-vim.keymap.set('v', '<leader>mh-', function()
-  -- Hol die Start- und Endzeilen des markierten Bereichs
-  local start_line = vim.fn.line "'<"
-  local end_line = vim.fn.line "'>"
-  -- Wende die Ersetzung auf den markierten Bereich an
-  vim.cmd(start_line .. ',' .. end_line .. 's/^\\(#\\+\\)#$//g')
-end, { desc = 'Decrease Markdown heading level' })
-
-------
-local function edge_playback_interactive(mode)
-  local text = ''
-  if mode == 'visual' then
-    -- Get selected text in visual mode
-    local start_pos = vim.fn.getpos "'<"
-    local end_pos = vim.fn.getpos "'>"
-    text = vim.fn.join(vim.fn.getline(start_pos[2], end_pos[2]), '\n')
-    text = text:sub(start_pos[3], end_pos[3])
-  else
-    -- Get the entire file content
-    text = vim.fn.join(vim.fn.getline(1, '$'), '\n')
-  end
-
-  -- Escape special characters
-  text = text:gsub('"', '\\"')
-
-  -- Construct the playback command
-  local cmd = 'edge-playback --text "' .. text .. '"'
-
-  -- Open a terminal for interactive playback
-  -- Use your preferred terminal emulator; here, tmux is used as an example
-  local terminal_cmd = 'tmux new-window -n "TTS Playback" \'' .. cmd .. "'"
-  print(terminal_cmd)
-  vim.fn.system(terminal_cmd)
-end
-
--- Command to play the entire file interactively
-vim.api.nvim_create_user_command('PlayFileInteractive', function()
-  edge_playback_interactive 'file'
-end, {})
-
--- Command to play the selected text interactively
-vim.api.nvim_create_user_command('PlaySelectionInteractive', function()
-  edge_playback_interactive 'visual'
-end, { range = true })
-
--- Key mappings for convenience
-vim.api.nvim_set_keymap('n', '<leader>pi', ':PlayFileInteractive<CR>', { noremap = true })
-vim.api.nvim_set_keymap('v', '<leader>pi', ':<C-u>PlaySelectionInteractive<CR>', { noremap = true })
-
-------
-
 vim.opt.backupcopy = 'yes'
 
 -- use space instead of tab
@@ -129,7 +68,7 @@ require('lazy').setup {
   require 'custom.plugins.laravel',
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim',    opts = {} },
+  { 'numToStr/Comment.nvim', opts = {} },
   {
     'github/copilot.vim',
     init = function()
@@ -157,10 +96,10 @@ require('lazy').setup {
       'TmuxNavigatePrevious',
     },
     keys = {
-      { '<c-h>',  '<cmd><C-U>TmuxNavigateLeft<cr>' },
-      { '<c-j>',  '<cmd><C-U>TmuxNavigateDown<cr>' },
-      { '<c-k>',  '<cmd><C-U>TmuxNavigateUp<cr>' },
-      { '<c-l>',  '<cmd><C-U>TmuxNavigateRight<cr>' },
+      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
+      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
+      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
+      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
       { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
     },
   },
@@ -192,7 +131,7 @@ require('lazy').setup {
   -- after the plugin has been loaded:
   --  config = function() ... end
 
-  {                     -- Useful plugin to show you pending keybinds.
+  { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     config = function() -- This is the function that runs, AFTER loading
@@ -202,19 +141,19 @@ require('lazy').setup {
 
       -- Document existing key chains
       require('which-key').add {
-        { '<leader>c',  group = '[C]ode' },
+        { '<leader>c', group = '[C]ode' },
         { '<leader>c_', hidden = true },
-        { '<leader>d',  group = '[D]ocument' },
+        { '<leader>d', group = '[D]ocument' },
         { '<leader>d_', hidden = true },
-        { '<leader>h',  group = 'Git [H]unk' },
+        { '<leader>h', group = 'Git [H]unk' },
         { '<leader>h_', hidden = true },
-        { '<leader>r',  group = '[R]ename' },
+        { '<leader>r', group = '[R]ename' },
         { '<leader>r_', hidden = true },
-        { '<leader>s',  group = '[S]earch' },
+        { '<leader>s', group = '[S]earch' },
         { '<leader>s_', hidden = true },
-        { '<leader>t',  group = '[T]oggle' },
+        { '<leader>t', group = '[T]oggle' },
         { '<leader>t_', hidden = true },
-        { '<leader>w',  group = '[W]orkspace' },
+        { '<leader>w', group = '[W]orkspace' },
         { '<leader>w_', hidden = true },
       }
       -- visual mode
@@ -254,7 +193,7 @@ require('lazy').setup {
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -347,11 +286,11 @@ require('lazy').setup {
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim',       opts = {} },
+      { 'j-hui/fidget.nvim', opts = {} },
 
       -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
-      { 'folke/neodev.nvim',       opts = {} },
+      { 'folke/neodev.nvim', opts = {} },
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -500,7 +439,7 @@ require('lazy').setup {
         marksman = {},
         jsonls = {},
         phpactor = {},
-        csharp_ls = {},
+        -- csharp_ls = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --

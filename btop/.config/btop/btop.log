@@ -1,0 +1,23 @@
+
+2025/01/26 (20:18:17) | ===> btop++ v.1.4.0
+2025/01/26 (20:18:17) | INFO: Logger set to DEBUG
+2025/01/26 (20:18:17) | DEBUG: Using locale en_US.UTF-8
+2025/01/26 (20:18:17) | INFO: Running on /dev/pts/6
+2025/01/26 (20:18:17) | WARNING: NVML: Failed to get maximum GPU power draw, defaulting to 225W: Not Supported
+2025/01/26 (20:18:17) | INFO: Failed to load librocm_smi64.so, AMD GPUs will not be detected: librocm_smi64.so.6: cannot open shared object file: No such file or directory
+2025/01/26 (20:18:17) | DEBUG: Failed to find Intel GPU sysfs path, Intel GPUs will not be detected
+2025/01/26 (20:18:17) | DEBUG: Shared::init() : Initialized.
+2025/01/26 (20:18:17) | DEBUG: Loading theme file: /usr/share/btop/themes/tokyo-night.theme
+2025/01/26 (20:18:20) | DEBUG: Writing new config file
+2025/01/26 (20:18:20) | INFO: Quitting! Runtime: 00:00:03
+
+2025/02/03 (20:37:30) | ===> btop++ v.1.4.0
+2025/02/03 (20:37:30) | INFO: Logger set to DEBUG
+2025/02/03 (20:37:30) | DEBUG: Using locale en_US.UTF-8
+2025/02/03 (20:37:30) | INFO: Running on /dev/pts/6
+2025/02/03 (20:37:30) | WARNING: NVML: Failed to get maximum GPU power draw, defaulting to 225W: Not Supported
+2025/02/03 (20:37:30) | INFO: Failed to load librocm_smi64.so, AMD GPUs will not be detected: librocm_smi64.so.6: cannot open shared object file: No such file or directory
+2025/02/03 (20:37:30) | DEBUG: Failed to find Intel GPU sysfs path, Intel GPUs will not be detected
+2025/02/03 (20:37:30) | DEBUG: Shared::init() : Initialized.
+2025/02/03 (20:37:30) | DEBUG: Loading theme file: /usr/share/btop/themes/tokyo-night.theme
+2025/02/03 (20:38:51) | INFO: Quitting! Runtime: 00:01:21
