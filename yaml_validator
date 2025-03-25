@@ -1,0 +1,34 @@
+#!/bin/bash
+
+validate_frontmatter() {
+  for file in *.md; do
+    echo "Validating $file..."
+    # Extract YAML frontmatter between the first two '---' markers.
+    frontmatter=$(awk '/^---$/ {if(++c==1){p=1;next} else if(c==2){p=0}} p {print}' "$file")
+    if [ -z "$frontmatter" ]; then
+      echo "  [Error] No frontmatter found."
+      continue
+    fi
+
+    # Get the title value (removing the key and any leading whitespace).
+    title=$(echo "$frontmatter" | grep '^title:' | sed 's/title:[[:space:]]*//')
+    if [ -z "$title" ]; then
+      echo "  [Error] Missing title."
+    elif echo "$title" | grep -q ":"; then
+      echo "  [Error] Title contains forbidden character ':'"
+    fi
+
+    # Get the description value.
+    description=$(echo "$frontmatter" | grep '^description:' | sed 's/description:[[:space:]]*//')
+    if [ -z "$description" ]; then
+      echo "  [Error] Missing description."
+    elif echo "$description" | grep -q ":"; then
+      echo "  [Error] Description contains forbidden character ':'"
+    fi
+
+    # You could add additional schema checks here (e.g. validating tags as a list)
+  done
+}
+
+# Run the validation function.
+validate_frontmatter
