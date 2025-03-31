@@ -1,0 +1,50 @@
+#!/bin/bash
+
+if ! command -v fzf &> /dev/null; then
+  echo "fzf is required but not installed. Please install fzf to proceed."
+  exit 1
+fi
+
+MIGRATIONS_DIR="database/migrations"
+
+if [ ! -d "$MIGRATIONS_DIR" ]; then
+  echo "Migrations directory not found at '$MIGRATIONS_DIR'. Please run this from your Laravel project root."
+  exit 1
+fi
+
+migrate_refresh_operation() {
+  local migration_file
+  migration_file=$(find "$MIGRATIONS_DIR" -type f -name "*.php" | fzf --prompt="Select migration file> ")
+
+  if [ -z "$migration_file" ]; then
+    echo "No migration file selected. Exiting."
+    exit 1
+  fi
+
+  local relative_path="${migration_file#./}"
+  echo "Executing: php artisan migrate:refresh --path=$relative_path"
+  php artisan migrate:refresh --path="$relative_path"
+}
+
+main_menu() {
+  local operations=("migrate:refresh --path" "Exit")
+  local choice
+
+  choice=$(printf "%s\n" "${operations[@]}" | fzf --prompt="Select Artisan Operation> ")
+
+  case "$choice" in
+    "migrate:refresh --path")
+      migrate_refresh_operation
+      ;;
+    "Exit")
+      echo "Exiting."
+      exit 0
+      ;;
+    *)
+      echo "Invalid option selected."
+      exit 1
+      ;;
+  esac
+}
+
+main_menu

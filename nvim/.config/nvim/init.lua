@@ -3,6 +3,7 @@ require 'keymaps'
 vim.keymap.set('n', '<C-n>', '<cmd>cnext<cr>')
 vim.keymap.set('n', '<C-p>', '<cmd>cprev<cr>')
 
+require('artisan_tinker').setup()
 vim.opt.backupcopy = 'yes'
 
 -- use space instead of tab
