@@ -4,4 +4,4 @@ background-blur-radius = 20
 macos-non-native-fullscreen = true
 gtk-titlebar = false
 font-family = "JetBrains Mono Nerd Font Mono"
-
+# custom-shader = ghostty-shaders/just-snow.glsl
