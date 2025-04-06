@@ -2,7 +2,7 @@
 # Stelle sicher, dass fzf installiert ist!
 
 # Datei einlesen
-entries=$(cat tags.txt)
+entries=$(cat /Users/simon/dotfiles/tags.txt)
 
 # Verwende fzf zur interaktiven Suche
 selected=$(echo "$entries" | fzf --prompt="Suche Tag: ")
