@@ -559,6 +559,7 @@ require('lazy').setup {
         python = { 'isort', 'black' },
         php = { 'pint' },
         blade = { 'blade-formatter' },
+        tex = { 'tex-fmt' },
         -- markdown = { 'mdformat' },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
