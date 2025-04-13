@@ -16,6 +16,13 @@ vim.api.nvim_exec(
   false
 )
 
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = '*.tex',
+  callback = function()
+    vim.opt.filetype = 'tex'
+  end,
+})
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
