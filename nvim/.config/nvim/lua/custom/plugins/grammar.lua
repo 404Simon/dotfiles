@@ -1,24 +1,36 @@
--- Datei: ~/.config/nvim/lua/grammar.lua
-
 -- Dieses Modul richtet Rechtschreib-, Grammatik- und Stilprüfung für LaTeX in Neovim ein.
+
+-- just a helper
+local function read_dictionary_file(fname)
+  local words = {}
+  if vim.fn.filereadable(fname) == 1 then
+    for line in io.lines(fname) do
+      if line:match '%S' then
+        table.insert(words, line)
+      end
+    end
+  end
+  return words
+end
+
 local M = {}
 
 function M.setup()
-  -- 1) LTeX-LS installieren über Mason
   require('mason').setup()
   require('mason-lspconfig').setup { ensure_installed = { 'ltex' } }
 
-  -- 2) LTeX per lspconfig
+  local spellfile = vim.fn.stdpath 'config' .. '/spell/de.utf-8.add'
+  local vim_spell = read_dictionary_file(spellfile)
+
   require('lspconfig').ltex.setup {
     settings = {
       ltex = {
         language = 'de-DE',
-        dictionary = { ['de-DE'] = { 'Fachbegriff' } },
+        dictionary = { ['de-DE'] = vim_spell },
       },
     },
   }
 
-  -- 3) native Rechtschreibprüfung für .tex aktivieren
   vim.api.nvim_create_autocmd('FileType', {
     pattern = 'tex',
     callback = function()
@@ -27,7 +39,7 @@ function M.setup()
     end,
   })
 
-  -- 4) Stil-Linting via null-ls: proselint & Vale
+  -- 4) Stil-Linting via null-ls: proselint
   local null_ls = require 'null-ls'
   null_ls.setup {
     null_ls.builtins.diagnostics.proselint.with { args = { '--json', '$FILENAME' } },
