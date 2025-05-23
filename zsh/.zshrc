@@ -1,3 +1,42 @@
+# new for setup without p10k or oh my zsh (just starship)
+HISTFILE=~/.zsh_history
+HISTSIZE=1000000
+SAVEHIST=1000000
+
+setopt share_history
+setopt inc_append_history
+setopt extended_history
+setopt hist_expire_dups_first
+autoload -Uz compinit
+compinit
+
+zstyle ':completion:*' matcher-list \
+  'm:{a-z}={A-Za-z} r:|=*' \
+  'm:{a-z}={A-Za-z} l:|=* r:|=*'
+
+zstyle ':completion:*' menu select=1
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# -------------------------------------------------------------
+# if the last two chars before the cursor are “..” then
+# insert “/” on Tab, else do the usual expand-or-complete
+# -------------------------------------------------------------
+insert-slash-if-dotdot() {
+  # ${LBUFFER: -2} is the last two chars of the left side of the buffer
+  if [[ ${LBUFFER: -2} == '..' ]]; then
+    LBUFFER+='/'
+  else
+    zle expand-or-complete
+  fi
+}
+
+# create a zle widget and bind it to Tab (Ctrl-I)
+zle -N insert-slash-if-dotdot
+bindkey '^I' insert-slash-if-dotdot
+
+# other stuff
+
+
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export PATH="$PATH:/usr/local/texlive/2024/bin/x86_64-linux"
 
@@ -60,6 +99,10 @@ fi
 
 if [[ "$(uname)" != "Darwin" ]]; then
   source ~/dotfiles/open.sh
+  export PYENV_ROOT="$HOME/.pyenv"
+  [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
 fi
 
 alias work="timer 25m && terminal-notifier -message 'Santa 🎅🏼'\
@@ -76,19 +119,9 @@ alias chill="timer 7m && terminal-notifier -message 'Santa 🎅🏼'\
 alias vim='nvim'
 alias t='tmux a || tmux'
 alias artisan='php artisan'
-jl() {
-    # Find all .ipynb files in the current directory
-    local notebooks=($(find . -maxdepth 1 -name "*.ipynb"))
-
-    echo "Vim Keybindings: https://pypi.org/project/jupyterlab-vim/"
-
-    # if there is exactly one notebook, open it, else just start jupyter
-    if [ ${#notebooks[@]} -eq 1 ]; then
-        jupyter lab "$notebooks"
-    else
-        jupyter lab
-    fi
-}
+alias jl='~/dev/jupyter_uv_env/.venv/bin/python -m jupyter lab --notebook-dir= ~/Vorlesungen/NLP/Notebooks/'
+alias pos='zsh /Users/simon/dotfiles/pos_tags.sh'
+alias art='zsh ~/dotfiles/art'
 
 # alias to use ollama with mods and a tmux popup
 alias llm='~/dotfiles/llama.sh'
@@ -114,7 +147,6 @@ alias p='pbpaste'
 alias c='pbcopy'
 
 alias java8='/Users/simon/.sdkman/candidates/java/8.0.412-zulu/bin/java'
-alias java17='/opt/homebrew/opt/openjdk@17/bin/java'
 alias java21='/opt/homebrew/Cellar/openjdk@21/21.0.5/bin/java'
 
 alias mvn8='export JAVA_HOME=/Users/simon/.sdkman/candidates/java/8.0.412-zulu && mvn'
@@ -156,50 +188,10 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # Created by `pipx` on 2024-09-11 10:34:37
 export PATH="$PATH:/Users/simon/.local/bin"
 
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
 alias arkserver="ssh -p 8888 lux"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# new for setup without p10k or oh my zsh (just starship)
-HISTFILE=~/.zsh_history
-HISTSIZE=1000000
-SAVEHIST=1000000
-
-setopt share_history
-setopt inc_append_history
-setopt extended_history
-setopt hist_expire_dups_first
-autoload -Uz compinit
-compinit
-
-zstyle ':completion:*' matcher-list \
-  'm:{a-z}={A-Za-z} r:|=*' \
-  'm:{a-z}={A-Za-z} l:|=* r:|=*'
-
-zstyle ':completion:*' menu select=1
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-# -------------------------------------------------------------
-# if the last two chars before the cursor are “..” then
-# insert “/” on Tab, else do the usual expand-or-complete
-# -------------------------------------------------------------
-insert-slash-if-dotdot() {
-  # ${LBUFFER: -2} is the last two chars of the left side of the buffer
-  if [[ ${LBUFFER: -2} == '..' ]]; then
-    LBUFFER+='/'
-  else
-    zle expand-or-complete
-  fi
-}
-
-# create a zle widget and bind it to Tab (Ctrl-I)
-zle -N insert-slash-if-dotdot
-bindkey '^I' insert-slash-if-dotdot
 
 eval "$(starship init zsh)"
