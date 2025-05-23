@@ -1,30 +1,6 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export PATH="$PATH:/Users/simon/.dotnet/tools"
-
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-  tmux
-  direnv
-)
-
-source $ZSH/oh-my-zsh.sh
+export PATH="$PATH:/usr/local/texlive/2024/bin/x86_64-linux"
 
 
 if [[ -n $SSH_CONNECTION ]]; then
@@ -35,14 +11,13 @@ fi
 
 export TERM=xterm-256color
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 export PATH="/Applications/IntelliJ IDEA.app/Contents/MacOS:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/dev/mdformat/env/bin:$PATH"
-eval "$(laravel completion)"
+export PATH="/home/simon/.local/bin:$PATH"
+export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+eval $(laravel completion)
 
 
 # Set up fzf key bindings and fuzzy completion
@@ -79,6 +54,11 @@ export BAT_THEME=tokyonight_night
 # there are a bunch of environment vars for gum, so i put them in a file and source it here
 source ~/gum_env.sh
 
+
+if [[ "$(uname)" == "Darwin" ]]; then
+source ~/dev/hideme_util/hideme.sh
+fi
+
 if [[ "$(uname)" != "Darwin" ]]; then
   source ~/dotfiles/open.sh
 fi
@@ -95,6 +75,7 @@ alias chill="timer 7m && terminal-notifier -message 'Santa 🎅🏼'\
 
 
 alias vim='nvim'
+alias t='tmux a || tmux'
 alias artisan='php artisan'
 jl() {
     # Find all .ipynb files in the current directory
@@ -117,7 +98,7 @@ alias llm='~/dotfiles/llama.sh'
 export ATAC_KEY_BINDINGS="/Users/simon/dev/atac/keybindings.toml"
 export SAM_CLI_TELEMETRY=0
 
-export OBSIDIAN_VAULT="/Users/simon/Library/Mobile Documents/iCloud~md~obsidian/Documents/SimonsVault"
+export OBSIDIAN_VAULT="/home/simon/obsidian-vault"
 
 alias fvim='result=$(rg --files --hidden --glob "!.git/**" --glob "!.obsidian/**" | fzf --preview="bat --color=always {}") && [ -n "$result" ] && nvim "$result"'
 alias fcode='result=$(fzf --preview="bat --color=always {}") && [ -n "$result" ] && code "$result"'
@@ -126,6 +107,7 @@ alias fzf='fzf --tmux 80%,80%'
 alias dev='eval "$(~/dotfiles/projectnavigator.sh)"'
 alias v='eval "$(~/dotfiles/vorlesungsnavigator.sh)"'
 alias o='source ~/dotfiles/obsidian_scripts.sh'
+alias art='~/dotfiles/art'
 alias trans='~/dotfiles/translate.sh'
 alias blog='~/dev/quartz/automation.sh'
 
@@ -204,17 +186,17 @@ function weather() {
 
 alias fif='bash ~/dotfiles/fif.sh'
 
-source ~/dev/cash/cash.sh
-source ~/dev/hideme_util/hideme.sh
-alias restarthide='bash ~/dev/hideme_util/restart.sh'
-
+# source ~/dev/cash/cash.sh
+# alias restarthide='bash ~/dev/hideme_util/restart.sh'
 alias ccurl='~/dev/cli_cacher/cli-cache ~/dev/cli_cacher/cache/ curl'
 alias chtsh='~/dev/chtsh/cht.sh'
 
+alias suspend='systemctl suspend'
+
 # GraalVM stuff
-export JAVA_HOME=/Users/simon/graalvm-jdk-21.0.5+9.1/Contents/Home
-export GRAALVM_HOME=/Users/simon/graalvm-jdk-21.0.5+9.1/Contents/Home
-export PATH=/Users/simon/graalvm-jdk-21.0.5+9.1/Contents/Home/bin:$PATH
+# export JAVA_HOME=/Users/simon/graalvm-jdk-21.0.5+9.1/Contents/Home
+# export GRAALVM_HOME=/Users/simon/graalvm-jdk-21.0.5+9.1/Contents/Home
+# export PATH=/Users/simon/graalvm-jdk-21.0.5+9.1/Contents/Home/bin:$PATH
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
@@ -225,6 +207,33 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # Created by `pipx` on 2024-09-11 10:34:37
 export PATH="$PATH:/Users/simon/.local/bin"
 
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+alias arkserver="ssh -p 8888 lux"
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# new for setup without p10k or oh my zsh (just starship)
+HISTFILE=~/.zsh_history
+HISTSIZE=1000000
+SAVEHIST=1000000
+
+setopt share_history
+setopt inc_append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt nocaseglob
+setopt auto_menu         # Show completion menu automatically
+setopt menu_complete     # Keep menu displayed for navigation
+autoload -U +X bashcompinit && bashcompinit
+autoload -U +X compinit && compinit
+
+zstyle ':completion:*' matcher-list \
+  'm:{a-z}={A-Za-z} r:|=*' \
+  'm:{a-z}={A-Za-z} l:|=* r:|=*'
+
+eval "$(starship init zsh)"
