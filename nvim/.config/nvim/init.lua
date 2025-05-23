@@ -567,11 +567,18 @@ require('lazy').setup {
         php = { 'pint' },
         blade = { 'blade-formatter' },
         tex = { 'tex-fmt' },
-        -- markdown = { 'mdformat' },
+        markdown = { 'mdfmt' },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
         -- javascript = { { "prettierd", "prettier" } },
+      },
+      formatters = {
+        mdfmt = {
+          command = 'mdfmt', -- the binary to run
+          args = {}, -- no extra args
+          stdin = true, -- we feed the buffer to stdin
+        },
       },
     },
     config = function(_, opts)
