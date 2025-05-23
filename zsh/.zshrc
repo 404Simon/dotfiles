@@ -1,5 +1,4 @@
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
-export PATH="$PATH:/Users/simon/.dotnet/tools"
 export PATH="$PATH:/usr/local/texlive/2024/bin/x86_64-linux"
 
 
@@ -132,45 +131,8 @@ alias vdproxy='ssh -J simon@lowboy -p 2222 vd@localhost'
 alias horbvpn='sudo openvpn --config ~/Documents/clientmac-lehre.ovpn.txt'
 alias jltunnel='ssh -f -N -L 9999:localhost:9999 vd@192.168.22.10'
 
-# Function to switch to light mode
-function switch_to_light_mode() {
-    # Set terminal background and foreground colors
-    echo -e "\033]10;#000000\007" # Black text (adjust as needed)
-    echo -e "\033]11;#ffffff\007" # White background (adjust as needed)
-    echo -e "\033]12;#000000\007" # Black cursor (ensure visibility)
-
-    # Set a specific prompt for light mode
-    export PS1="%F{black}%n@%m%f:%F{blue}%~%f$ "
-
-    # Set other Zsh options for light mode
-    export LSCOLORS="gxBxhxDxfxhxhxhxhxcxcx" # Set light LS_COLORS
-    # Source the new configuration
-    source ~/.zshrc
-    echo "😡"
-}
-
-# Function to switch to dark mode
-function switch_to_dark_mode() {
-    # Set terminal background and foreground colors
-    echo -e "\033]10;#dbdbdb\007" # Light gray text
-    echo -e "\033]11;#15191e\007" # Dark gray background
-    echo -e "\033]12;#dbdbdb\007" # Light gray cursor (ensure visibility)
-
-    # Set a specific prompt for dark mode
-    export PS1="%F{lightgray}%n@%m%f:%F{cyan}%~%f$ "
-
-    # Set other Zsh options for dark mode
-    export LSCOLORS="gxfxcxdxbxegedabagacad" # Set dark LS_COLORS
-
-    # Source the new configuration
-    source ~/.zshrc
-}
-
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# Aliases for easy switching
-alias light='switch_to_light_mode'
-alias dark='switch_to_dark_mode'
 
 alias ls='eza --color=always --icons=always'
 eval $(thefuck --alias)
@@ -181,23 +143,10 @@ alias cd='z'
 function weather() {
     location="${*:-Dombühl}"
     location="${location// /+}"
-    ~/dev/cli_cacher/cli-cache ~/dev/cli_cacher/cache/ curl -s "wttr.in/$location" | sed '1d;$d;$d'
+    curl -s "wttr.in/$location" | sed '1d;$d;$d'
 }
 
-alias fif='bash ~/dotfiles/fif.sh'
-
-# source ~/dev/cash/cash.sh
-# alias restarthide='bash ~/dev/hideme_util/restart.sh'
-alias ccurl='~/dev/cli_cacher/cli-cache ~/dev/cli_cacher/cache/ curl'
-alias chtsh='~/dev/chtsh/cht.sh'
-
 alias suspend='systemctl suspend'
-
-# GraalVM stuff
-# export JAVA_HOME=/Users/simon/graalvm-jdk-21.0.5+9.1/Contents/Home
-# export GRAALVM_HOME=/Users/simon/graalvm-jdk-21.0.5+9.1/Contents/Home
-# export PATH=/Users/simon/graalvm-jdk-21.0.5+9.1/Contents/Home/bin:$PATH
-
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
