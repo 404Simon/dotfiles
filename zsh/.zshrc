@@ -34,10 +34,6 @@ insert-slash-if-dotdot() {
 zle -N insert-slash-if-dotdot
 bindkey '^I' insert-slash-if-dotdot
 
-# other stuff
-
-
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export PATH="$PATH:/usr/local/texlive/2024/bin/x86_64-linux"
 
 
@@ -94,68 +90,27 @@ source ~/gum_env.sh
 
 
 if [[ "$(uname)" == "Darwin" ]]; then
-source ~/dev/hideme_util/hideme.sh
-source ~/dotfiles/machines/macbookair/zsh/env.sh
+  source ~/dotfiles/machines/macbookair/zsh/env.sh
+  source ~/dotfiles/machines/arch/zsh/alias.sh
+  source ~/dev/hideme_util/hideme.sh
 fi
 
 if [[ "$(uname)" != "Darwin" ]]; then
+  source ~/dotfiles/machines/arch/zsh/env.sh
+  source ~/dotfiles/machines/arch/zsh/alias.sh
   source ~/dotfiles/open.sh
   export PYENV_ROOT="$HOME/.pyenv"
-  export OBSIDIAN_VAULT="/home/simon/obsidian-vault"
   [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init --path)"
   eval "$(pyenv init -)"
 fi
 
-alias work="timer 25m && terminal-notifier -message 'Santa 🎅🏼'\
-        -title 'Work Timer is up! Take a Break 😊'\
-        -appIcon '~/Pictures/pumpkin.png'\
-        -sound Crystal"
+source ~/dotfiles/machines/common/zsh/alias.sh
 
-alias chill="timer 7m && terminal-notifier -message 'Santa 🎅🏼'\
-        -title 'Break is over! Get back to work 😬'\
-        -appIcon '~/Pictures/pumpkin.png'\
-        -sound Crystal"
-
-
-alias vim='nvim'
-alias t='tmux a || tmux'
-alias artisan='php artisan'
-alias jl='~/dev/jupyter_uv_env/.venv/bin/python -m jupyter lab --notebook-dir= ~/Vorlesungen/NLP/Notebooks/'
-alias pos='zsh /Users/simon/dotfiles/pos_tags.sh'
-alias art='zsh ~/dotfiles/art'
-
-# alias to use ollama with mods and a tmux popup
-alias llm='~/dotfiles/llama.sh'
-
-# i use atac as an api client like postman or insomnia, i need to declare the keybindings in an env var to use vim bindings
-export ATAC_KEY_BINDINGS="/Users/simon/dev/atac/keybindings.toml"
-export SAM_CLI_TELEMETRY=0
-
-alias fvim='result=$(rg --files --hidden --glob "!.git/**" --glob "!.obsidian/**" | fzf --preview="bat --color=always {}") && [ -n "$result" ] && nvim "$result"'
-alias fcode='result=$(fzf --preview="bat --color=always {}") && [ -n "$result" ] && code "$result"'
 alias fzf='fzf --tmux 80%,80%'
-
-alias dev='eval "$(~/dotfiles/projectnavigator.sh)"'
-alias v='eval "$(~/dotfiles/vorlesungsnavigator.sh)"'
-alias o='source ~/dotfiles/obsidian_scripts.sh'
-alias art='~/dotfiles/art'
-alias trans='~/dotfiles/translate.sh'
-alias blog='~/dev/quartz/automation.sh'
-
-alias p='pbpaste'
-alias c='pbcopy'
-
-alias java8='/Users/simon/.sdkman/candidates/java/8.0.412-zulu/bin/java'
-alias java21='/opt/homebrew/Cellar/openjdk@21/21.0.5/bin/java'
-
-alias mvn8='export JAVA_HOME=/Users/simon/.sdkman/candidates/java/8.0.412-zulu && mvn'
-alias mvn17='export JAVA_HOME=/opt/homebrew/opt/openjdk@17 && export PATH=$JAVA_HOME/bin:$PATH && mvn'
-alias mvn21='export JAVA_HOME=/opt/homebrew/Cellar/openjdk@21/21.0.5 && export PATH=$JAVA_HOME/bin:$PATH && mvn'
 
 alias lux='ssh root@194.15.36.188'
 alias netcup='ssh hosting178047@ae89a.netcup.net'
-alias netcupfiles='cd /Users/simon/Library/Containers/net.langui.FTPMounterLite/Data/.FTPVolumes/Netcup' # this only works with FTPMounterLite connected to the netcup server
 alias containerer='ssh simon@192.168.178.91'
 alias vd='ssh vd@192.168.22.10'
 alias vdproxy='ssh -J simon@lowboy -p 2222 vd@localhost'
@@ -164,31 +119,6 @@ alias horbvpn='sudo openvpn --config ~/Documents/clientmac-lehre.ovpn.txt'
 alias jltunnel='ssh -f -N -L 9999:localhost:9999 vd@192.168.22.10'
 
 export PATH="$HOME/.cargo/bin:$PATH"
-
-
-alias ls='eza --color=always --icons=always'
-eval $(thefuck --alias)
-eval $(thefuck --alias fk)
-eval "$(zoxide init zsh)"
-alias cd='z'
-
-function weather() {
-    location="${*:-Dombühl}"
-    location="${location// /+}"
-    curl -s "wttr.in/$location" | sed '1d;$d;$d'
-}
-
-alias suspend='systemctl suspend'
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-# source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Created by `pipx` on 2024-09-11 10:34:37
-export PATH="$PATH:/Users/simon/.local/bin"
-
-alias arkserver="ssh -p 8888 lux"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
