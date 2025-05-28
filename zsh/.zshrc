@@ -95,11 +95,13 @@ source ~/gum_env.sh
 
 if [[ "$(uname)" == "Darwin" ]]; then
 source ~/dev/hideme_util/hideme.sh
+source ~/dotfiles/machines/macbookair/zsh/env.sh
 fi
 
 if [[ "$(uname)" != "Darwin" ]]; then
   source ~/dotfiles/open.sh
   export PYENV_ROOT="$HOME/.pyenv"
+  export OBSIDIAN_VAULT="/home/simon/obsidian-vault"
   [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init --path)"
   eval "$(pyenv init -)"
@@ -129,8 +131,6 @@ alias llm='~/dotfiles/llama.sh'
 # i use atac as an api client like postman or insomnia, i need to declare the keybindings in an env var to use vim bindings
 export ATAC_KEY_BINDINGS="/Users/simon/dev/atac/keybindings.toml"
 export SAM_CLI_TELEMETRY=0
-
-export OBSIDIAN_VAULT="/home/simon/obsidian-vault"
 
 alias fvim='result=$(rg --files --hidden --glob "!.git/**" --glob "!.obsidian/**" | fzf --preview="bat --color=always {}") && [ -n "$result" ] && nvim "$result"'
 alias fcode='result=$(fzf --preview="bat --color=always {}") && [ -n "$result" ] && code "$result"'
