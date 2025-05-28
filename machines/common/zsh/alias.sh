@@ -11,6 +11,7 @@ alias chill="timer 7m && terminal-notifier -message 'Santa 🎅🏼'\
 alias vim='nvim'
 alias t='tmux a || tmux'
 alias y='yazi'
+alias fzf='fzf --tmux 80%,80%'
 alias artisan='php artisan'
 alias dev='eval "$(~/dotfiles/projectnavigator.sh)"'
 alias v='eval "$(~/dotfiles/vorlesungsnavigator.sh)"'

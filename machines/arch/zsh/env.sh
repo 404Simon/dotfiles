@@ -1,1 +1,6 @@
 export OBSIDIAN_VAULT="/home/simon/obsidian-vault/"
+export PATH="$PATH:/usr/local/texlive/2024/bin/x86_64-linux"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"

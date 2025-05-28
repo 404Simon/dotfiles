@@ -19,3 +19,5 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # Created by `pipx` on 2024-09-11 10:34:37
 export PATH="$PATH:/Users/simon/.local/bin"
+
+source ~/dev/hideme_util/hideme.sh
