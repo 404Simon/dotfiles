@@ -8,6 +8,8 @@ alias mvn8='export JAVA_HOME=/Users/simon/.sdkman/candidates/java/8.0.412-zulu &
 alias mvn17='export JAVA_HOME=/opt/homebrew/opt/openjdk@17 && export PATH=$JAVA_HOME/bin:$PATH && mvn'
 alias mvn21='export JAVA_HOME=/opt/homebrew/Cellar/openjdk@21/21.0.5 && export PATH=$JAVA_HOME/bin:$PATH && mvn'
 
+alias jl='~/dev/jupyter_uv_env/.venv/bin/python -m jupyter lab --notebook-dir= ~/Vorlesungen/NLP/Notebooks'
+
 alias netcupfiles='cd /Users/simon/Library/Containers/net.langui.FTPMounterLite/Data/.FTPVolumes/Netcup' # this only works with FTPMounterLite connected to the netcup server
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!

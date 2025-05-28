@@ -91,7 +91,7 @@ source ~/gum_env.sh
 
 if [[ "$(uname)" == "Darwin" ]]; then
   source ~/dotfiles/machines/macbookair/zsh/env.sh
-  source ~/dotfiles/machines/arch/zsh/alias.sh
+  source ~/dotfiles/machines/macbookair/zsh/alias.sh
   source ~/dev/hideme_util/hideme.sh
 fi
 
