@@ -6,6 +6,7 @@ $directory\
 $git_branch\
 $git_status\
 [](fg:#394260 bg:#212736)\
+$direnv\
 $nodejs\
 $rust\
 $golang\
@@ -27,6 +28,7 @@ truncation_symbol = "…/"
 "Downloads" = " "
 "Music" = " "
 "Pictures" = " "
+"dev" = "λ "
 
 [git_branch]
 symbol = ""
@@ -70,3 +72,7 @@ time_format = "%R" # Hour:Minute Format
 style = "bg:#1d2230"
 format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
 
+[direnv]
+disabled = false
+style = "bg:#212736"
+format = '[[ $symbol: $loaded/$allowed ](fg:#769ff0 bg:#212736)]($style)'
