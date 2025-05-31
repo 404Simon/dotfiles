@@ -1,13 +1,3 @@
-alias work="timer 25m && terminal-notifier -message 'Santa 🎅🏼'\
-        -title 'Work Timer is up! Take a Break 😊'\
-        -appIcon '~/Pictures/pumpkin.png'\
-        -sound Crystal"
-
-alias chill="timer 7m && terminal-notifier -message 'Santa 🎅🏼'\
-        -title 'Break is over! Get back to work 😬'\
-        -appIcon '~/Pictures/pumpkin.png'\
-        -sound Crystal"
-
 alias vim='nvim'
 alias t='tmux a || tmux'
 alias y='yazi'
@@ -34,3 +24,23 @@ function weather() {
 
 alias arkserver="ssh -p 8888 lux"
 
+
+# -- Pomodoro --
+icon=~/Pictures/pumpkin.png
+
+if [[ $(uname) == Darwin ]] && command -v terminal-notifier >/dev/null; then
+  notify(){ terminal-notifier \
+              -title "$1" \
+              -message "$2" \
+              -appIcon "$icon" \
+              -sound Crystal; }
+else
+  notify(){ notify-send -i "$icon" "$1" "$2";paplay /usr/share/sounds/freedesktop/stereo/complete.oga;paplay /usr/share/sounds/freedesktop/stereo/complete.oga; }
+fi
+
+work(){ timer ${1:-25m} && \
+        notify "Work Timer is up! Take a Break 😊" "Santa 🎅🏼"; }
+
+chill(){ timer ${1:-7m} && \
+         notify "Break is over! Get back to work 😬" "Santa 🎅🏼"; }
+# -- End Pomodoro --
