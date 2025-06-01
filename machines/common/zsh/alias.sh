@@ -24,9 +24,25 @@ function weather() {
 
 alias arkserver="ssh -p 8888 lux"
 
-
 # -- Pomodoro --
 icon=~/Pictures/pumpkin.png
+
+# IMPORTANT: mpv MUST be started with an IPC server for this to work.
+# Example: mpv --input-ipc-server=/tmp/mpv-socket /path/to/your/audio.mp3 &
+MPV_IPC_SOCKET="/tmp/mpv-socket"
+
+mpv_send_command() {
+  local command_json="$1"
+  if command -v socat >/dev/null; then
+    if pgrep mpv >/dev/null; then # Check if an mpv process is running
+      if [[ -S "$MPV_IPC_SOCKET" ]]; then # Check if the socket file exists and is a socket
+        echo "$command_json" | socat - "$MPV_IPC_SOCKET" 2>/dev/null
+      fi
+    fi
+  else
+    echo "Error: 'socat' not found. Cannot control mpv via IPC." >&2
+  fi
+}
 
 if [[ $(uname) == Darwin ]] && command -v terminal-notifier >/dev/null; then
   notify(){ terminal-notifier \
@@ -38,9 +54,13 @@ else
   notify(){ notify-send -i "$icon" "$1" "$2";paplay /usr/share/sounds/freedesktop/stereo/complete.oga;paplay /usr/share/sounds/freedesktop/stereo/complete.oga; }
 fi
 
-work(){ timer ${1:-25m} && \
-        notify "Work Timer is up! Take a Break 😊" "Santa 🎅🏼"; }
+work(){
+        mpv_send_command '{ "command": ["set_property", "pause", false] }'
+        timer ${1:-25}m && \
+        mpv_send_command '{ "command": ["set_property", "pause", true] }'
+        notify "Work Timer is up! Take a Break 😊" "Santa 🎅🏼" && \
+}
 
-chill(){ timer ${1:-7m} && \
+chill(){ timer ${1:-7}m && \
          notify "Break is over! Get back to work 😬" "Santa 🎅🏼"; }
 # -- End Pomodoro --
