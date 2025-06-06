@@ -29,7 +29,7 @@ truncate_to_repo = false
 "Downloads" = " "
 "Music" = " "
 "Pictures" = " "
-"dev" = "δ"
+"~/dev" = "δ"
 "dotfiles" = "⚙ "
 
 [git_branch]
