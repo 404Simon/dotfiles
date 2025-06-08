@@ -3,6 +3,10 @@ require 'keymaps'
 vim.keymap.set('n', '<C-n>', '<cmd>cnext<cr>')
 vim.keymap.set('n', '<C-p>', '<cmd>cprev<cr>')
 
+-- make jj esc
+vim.keymap.set('i', 'jj', '<Esc>')
+vim.keymap.set('v', 'jj', '<Esc>')
+vim.keymap.set('c', 'jj', '<Esc>')
 require('artisan_tinker').setup()
 vim.opt.backupcopy = 'yes'
 
