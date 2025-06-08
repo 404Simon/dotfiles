@@ -4,8 +4,6 @@ else
   export EDITOR='nvim'
 fi
 
-export TERM=xterm-256color
-
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
