@@ -78,6 +78,7 @@ require('lazy').setup {
   -- require 'custom.plugins.images',
   require 'custom.plugins.harpoon',
   require 'custom.plugins.laravel',
+  require 'custom.plugins.typst',
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
