@@ -3,7 +3,8 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/dev ~/Vorlesungen -mindepth 1 -maxdepth 1 -type d | \
+    selected=$( (find ~/dev ~/Vorlesungen -mindepth 1 -maxdepth 1 -type d; \
+        echo "$HOME/dotfiles") | \
         sed "s|^$HOME/||" | \
         fzf --margin 10% --color="bw" 
     )
