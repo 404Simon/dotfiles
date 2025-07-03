@@ -16,6 +16,16 @@ window#waybar {
     border-bottom: 1px solid @overlay1;
 }
 
+
+tooltip {
+  background: rgba(43, 48, 59, 0.5);
+  border: 1px solid rgba(100, 114, 125, 0.5);
+  margin: 12px;
+}
+tooltip label {
+  color: white;
+}
+
 #window {
     margin: 8px;
     padding-left: 8;
@@ -130,4 +140,12 @@ button:hover {
     border-radius: 15px;
     padding-left: 6px;
     padding-right: 6px;
+}
+
+#custom-media {
+    color: @lavender;
+}
+
+#custom-weather {
+    color: @yellow;
 }

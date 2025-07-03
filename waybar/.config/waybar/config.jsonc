@@ -4,9 +4,11 @@
 		"hyprland/workspaces"
 	],
 	"modules-center": [
-		"hyprland/window"
+		// "hyprland/window"
+		"custom/media"
 	],
 	"modules-right": [
+		"custom/weather",
 		"battery",
 		"bluetooth",
 		"network",
@@ -67,5 +69,25 @@
 		"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
 		"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
 		"on-click": "blueman-manager"
+	},
+	"custom/media": {
+		"format": "🎵 {}",
+		"exec": "playerctl -p spotify metadata --format '{{ artist }} - {{ title }}'",
+		"interval": 5,
+		"on-click": "playerctl -p spotify play-pause",
+		"on-scroll-up": "playerctl -p spotify previous",
+		"on-scroll-down": "playerctl -p spotify next"
+	},
+	"custom/weather": {
+		// "exec": "~/.cargo/bin/waybar-weather",
+		// "return-type": "json",
+		// "interval": 600,
+		// "tooltip": true
+		"format": "{}°",
+		"tooltip": true,
+		"interval": 3600,
+		"exec": "wttrbar --date-format %A --location Dombuehl",
+		"return-type": "json",
+		"on-click": "gnome-weather"
 	}
 }
