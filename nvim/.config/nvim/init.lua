@@ -5,8 +5,8 @@ vim.keymap.set('n', '<C-p>', '<cmd>cprev<cr>')
 
 -- make jj esc
 vim.keymap.set('i', 'jj', '<Esc>')
-vim.keymap.set('v', 'jj', '<Esc>')
 vim.keymap.set('c', 'jj', '<Esc>')
+
 require('artisan_tinker').setup()
 vim.opt.backupcopy = 'yes'
 
@@ -709,8 +709,8 @@ require('lazy').setup {
             end
           end, { 'i', 's' }),
 
-          -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
-          --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
+          -- load .lua snippets
+          require('luasnip.loaders.from_lua').load { paths = '~/.config/nvim/snippets/' },
         },
         sources = {
           { name = 'nvim_lsp' },
