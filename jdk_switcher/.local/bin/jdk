@@ -1,0 +1,52 @@
+#!/bin/bash
+
+JDK_HOME="$HOME/.jdks"
+DEFAULT_JAVA_LINK="$HOME/.jdks/selected_java"
+JAVA_LINK_NAME="java"
+
+list_jdks() {
+    echo "Available Versions:"
+    find "$JDK_HOME" -mindepth 1 -maxdepth 1 -type d \
+        ! -name "selected_java" -exec basename {} \;
+}
+
+select_jdk() {
+    # If an argument is provided, use it as the choice
+    if [[ -n "$2" ]]; then
+        choice="$2"
+    else
+        list_jdks
+        read -p "Enter directory you need: " choice
+    fi
+
+    JDK_PATH="$JDK_HOME/$choice"
+
+    if [[ ! -d "$JDK_PATH" ]]; then
+        echo "Not a valid version D:"
+        return 1
+    fi
+
+    # Ensure selected_java directory exists
+    mkdir -p "$DEFAULT_JAVA_LINK"
+
+    # Remove old symlink if exists
+    if [[ -L "$DEFAULT_JAVA_LINK/$JAVA_LINK_NAME" || -e "$DEFAULT_JAVA_LINK/$JAVA_LINK_NAME" ]]; then
+        rm -rf "$DEFAULT_JAVA_LINK/$JAVA_LINK_NAME"
+    fi
+
+    ln -s "$JDK_PATH" "$DEFAULT_JAVA_LINK/$JAVA_LINK_NAME"
+
+    # make sure JAVA_HOME is right
+    export JAVA_HOME="$DEFAULT_JAVA_LINK/$JAVA_LINK_NAME"
+    export PATH="$DEFAULT_JAVA_LINK/$JAVA_LINK_NAME/bin:$PATH"
+    echo "Java version $choice selected!"
+}
+
+case "$1" in
+    list)
+    list_jdks
+    ;;
+    select)
+    select_jdk "$@"
+    ;;
+esac
