@@ -12,7 +12,7 @@ export HYPRLAND_INSTANCE_SIGNATURE="$HIS"
 # export the Wayland display name
 export WAYLAND_DISPLAY="${WAYLAND_DISPLAY:-wayland-0}"
 
-WALLPAPER_DIR="/home/simon/Bilder/Wallpapers"
+WALLPAPER_DIR="/home/simon/dotfiles/wallpapers/gta"
 
 HOUR=$(date +%H)
 
