@@ -11,8 +11,6 @@ alias trans='~/dotfiles/translate.sh'
 alias blog='~/dev/quartz/automation.sh'
 
 alias ls='eza --color=always --icons=always'
-eval $(thefuck --alias)
-eval $(thefuck --alias fk)
 eval "$(zoxide init zsh)"
 alias cd='z'
 
