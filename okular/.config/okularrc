@@ -1,0 +1,67 @@
+[Desktop Entry]
+FullScreen=false
+shouldShowMenuBarComingFromFullScreen=true
+shouldShowToolBarComingFromFullScreen=true
+
+[General]
+LockSidebar=true
+ShowSidebar=false
+
+[Interface]
+ResolutionX=14.1732529
+ResolutionY=14.1732529
+Rulers=false
+StatusBarShowLineNumber=true
+StatusBarShowModified=true
+StatusBarShowMouse=false
+StatusBarShowPage=true
+StatusBarShowPageSize=false
+StatusBarShowPageStyle=true
+StatusBarShowWordCount=false
+StatusBarShowZoom=true
+ViewFieldShadings=true
+ViewFormattingChars=false
+ViewFrameBorders=true
+ViewSectionBounds=false
+ViewTableBorders=true
+Zoom=100
+ZoomMode=1
+
+[MainWindow][Toolbar mainToolBar]
+IconSize=16
+
+[Misc]
+Units=in
+
+[Recent Files]
+File1[$e]=$HOME/Vorlesungen/Verteilte_Systeme/Verteilte Systeme 2025.pdf
+File10[$e]=/mnt/windows/Backup/2023-01-07/VL4/Übungen_und_Lösungen_4_am_01.12.2022.pdf
+File2[$e]=$HOME/Vorlesungen/Verteilte_Systeme/pieces/einfuehrung_und_architektur.pdf
+File3[$e]=$HOME/Vorlesungen/Verteilte_Systeme/pieces/prozesse_und_ipc.pdf
+File4[$e]=$HOME/Vorlesungen/Verteilte_Systeme/pieces/namensraeume.pdf
+File5[$e]=$HOME/dev/DHBW-Typst-Template/main.pdf
+File6[$e]=$HOME/Dokumente/Ausweis.pdf
+File7[$e]=$HOME/Dokumente/2003-01-25 Ausweis_vorn.pdf
+File8[$e]=$HOME/Dokumente/ausweis.pdf
+File9[$e]=$HOME/Dokumente/unbedenklichkeitsbescheinigung.pdf
+Name1[$e]=Verteilte Systeme 2025.pdf
+Name10[$e]=Übungen_und_Lösungen_4_am_01.12.2022.pdf
+Name2[$e]=einfuehrung_und_architektur.pdf
+Name3[$e]=prozesse_und_ipc.pdf
+Name4[$e]=namensraeume.pdf
+Name5[$e]=main.pdf
+Name6[$e]=Ausweis.pdf
+Name7[$e]=2003-01-25 Ausweis_vorn.pdf
+Name8[$e]=ausweis.pdf
+Name9[$e]=unbedenklichkeitsbescheinigung.pdf
+
+[Toolbar mainToolBar]
+IconSize=16
+
+[calligra]
+DockerPlugins=calligra_docker_defaults,calligra_docker_stencils
+DockerPluginsDisabled=
+ShapePlugins=braindump_shape_web,calligra_shape_artistictext,calligra_shape_chart,calligra_shape_formula,calligra_shape_music,calligra_shape_paths,calligra_shape_picture,calligra_shape_plugin,calligra_shape_text,calligra_shape_threed,calligra_shape_vector,calligra_shape_video
+ShapePluginsDisabled=
+ToolPlugins=calligra_tool_basicflakes,calligra_tool_defaults,karbon_tools
+ToolPluginsDisabled=
