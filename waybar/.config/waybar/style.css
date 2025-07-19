@@ -26,6 +26,10 @@ tooltip label {
   color: white;
 }
 
+#tray {
+  margin-left: 60px;
+}
+
 #window {
     margin: 8px;
     padding-left: 8;
