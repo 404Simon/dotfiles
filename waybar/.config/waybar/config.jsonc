@@ -92,7 +92,7 @@
 		"format": "{}°",
 		"tooltip": true,
 		"interval": 3600,
-		"exec": "wttrbar --date-format %A --location Dombuehl",
+		"exec": "wttrbar --date-format %A --location Nuernberg",
 		"return-type": "json",
 		"on-click": "gnome-weather"
 	}
