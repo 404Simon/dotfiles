@@ -6,8 +6,10 @@ JAVA_LINK_NAME="java"
 
 list_jdks() {
     echo "Available Versions:"
-    find "$JDK_HOME" -mindepth 1 -maxdepth 1 -type d \
-        ! -name "selected_java" -exec basename {} \;
+    find "$JDK_HOME" -mindepth 1 -maxdepth 1 \
+        \( -type d -o -type l \) \
+        ! -name "selected_java" \
+        -exec bash -c 'if [ -d "$0" ]; then basename "$0"; fi' {} \;
 }
 
 select_jdk() {
@@ -42,11 +44,35 @@ select_jdk() {
     echo "Java version $choice selected!"
 }
 
+print_current_jdk() {
+    if [[ -L "$DEFAULT_JAVA_LINK/$JAVA_LINK_NAME" ]]; then
+        TARGET=$(readlink -f "$DEFAULT_JAVA_LINK/$JAVA_LINK_NAME")
+        VERSION=$(basename "$TARGET")
+        echo "Currently selected JDK: $VERSION ($TARGET)"
+    else
+        echo "No JDK is currently selected."
+    fi
+}
+
+print_usage() {
+    echo "Usage: jdk [command]"
+    echo "Commands:"
+    echo "  list           List available JDKs"
+    echo "  select [name]  Select a JDK by name"
+    echo "  current        Show the currently selected JDK (default if no command)"
+}
+
 case "$1" in
     list)
     list_jdks
     ;;
     select)
     select_jdk "$@"
+    ;;
+    ""|current)
+    print_current_jdk
+    ;;
+    *)
+    print_usage
     ;;
 esac
