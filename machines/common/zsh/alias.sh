@@ -15,12 +15,10 @@ eval "$(zoxide init zsh)"
 alias cd='z'
 
 function weather() {
-    location="${*:-Dombühl}"
+    location="${*:-Nürnberg}"
     location="${location// /+}"
     curl -s "wttr.in/$location" | sed '1d;$d;$d'
 }
-
-alias arkserver="ssh -p 8888 lux"
 
 # -- Pomodoro --
 icon=~/Pictures/pumpkin.png
