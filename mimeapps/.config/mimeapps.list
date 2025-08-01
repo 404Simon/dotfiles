@@ -1,4 +1,5 @@
 [Added Associations]
+application/pdf=/home/simon/.local/share/applications/okular-3.desktop;okular-3.desktop;okular-2.desktop;okular.desktop;
 application/x-extension-htm=zen.desktop;userapp-Zen-7P3472.desktop;
 application/x-extension-html=zen.desktop;userapp-Zen-7P3472.desktop;
 application/x-extension-shtml=zen.desktop;userapp-Zen-7P3472.desktop;
@@ -17,6 +18,7 @@ x-scheme-handler/webcal=userapp-Thunderbird-UBH112.desktop;
 x-scheme-handler/webcals=userapp-Thunderbird-UBH112.desktop;
 
 [Default Applications]
+application/pdf=/home/simon/.local/share/applications/okular-3.desktop;
 application/x-extension-htm=zen.desktop
 application/x-extension-html=zen.desktop
 application/x-extension-ics=userapp-Thunderbird-UBH112.desktop
@@ -26,9 +28,17 @@ application/x-extension-xhtml=zen.desktop
 application/xhtml+xml=zen.desktop
 image/jpeg=feh.desktop
 image/png=feh.desktop
+inode/directory=org.kde.dolphin.desktop
 message/rfc822=userapp-Thunderbird-RIRZ12.desktop
 text/calendar=userapp-Thunderbird-UBH112.desktop
 text/html=zen.desktop
+video/mp4=vlc.desktop
+video/ogg=vlc.desktop
+video/quicktime=vlc.desktop
+video/webm=vlc.desktop
+video/x-flv=vlc.desktop
+video/x-matroska=vlc.desktop
+video/x-msvideo=vlc.desktop
 x-scheme-handler/about=vivaldi-stable.desktop
 x-scheme-handler/chrome=zen.desktop
 x-scheme-handler/discord=vesktop.desktop
@@ -40,12 +50,3 @@ x-scheme-handler/mid=userapp-Thunderbird-RIRZ12.desktop
 x-scheme-handler/unknown=vivaldi-stable.desktop
 x-scheme-handler/webcal=userapp-Thunderbird-UBH112.desktop
 x-scheme-handler/webcals=userapp-Thunderbird-UBH112.desktop
-video/mp4=vlc.desktop
-video/x-matroska=vlc.desktop
-video/webm=vlc.desktop
-video/ogg=vlc.desktop
-video/quicktime=vlc.desktop
-video/x-flv=vlc.desktop
-video/x-msvideo=vlc.desktop
-inode/directory=org.kde.dolphin.desktop
-application/pdf=org.kde.okular.desktop
