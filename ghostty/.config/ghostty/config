@@ -1,4 +1,4 @@
-theme = tokyonight
+theme = TokyoNight
 background-opacity = 0.75
 background-blur-radius = 20
 macos-non-native-fullscreen = true
