@@ -77,28 +77,4 @@ return {
       }
     end,
   },
-  { -- custom command to setup shell harpoon
-    vim.api.nvim_create_user_command('SetupHarpoon', function()
-      -- Get the current file path
-      local filepath = vim.fn.expand '%:p'
-
-      -- Define the output file path
-      local output_file = vim.fn.expand '~/.shell_harpoon'
-
-      -- Check if the file exists, and delete it if so
-      if vim.fn.filereadable(output_file) == 1 then
-        os.remove(output_file)
-      end
-
-      -- Create a new file and write the current filepath to it
-      local file = io.open(output_file, 'w')
-      if file then
-        file:write(filepath)
-        file:close()
-        print('Current file path written to ' .. output_file)
-      else
-        print('Error: Could not open file ' .. output_file)
-      end
-    end, {}),
-  },
 }
