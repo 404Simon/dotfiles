@@ -6,13 +6,16 @@ alias artisan='php artisan'
 alias dev='eval "$(~/dotfiles/projectnavigator.sh)"'
 alias v='eval "$(~/dotfiles/vorlesungsnavigator.sh)"'
 alias o='source ~/dotfiles/obsidian_scripts.sh'
-alias art='~/dotfiles/art'
-alias trans='~/dotfiles/translate.sh'
 alias blog='~/dev/quartz/automation.sh'
-
 alias ls='eza --color=always --icons=always'
 eval "$(zoxide init zsh)"
 alias cd='z'
+alias pint='./vendor/bin/pint'
+alias stan='./vendor/bin/phpstan'
+alias pest='./vendor/bin/pest'
+alias rector='./vendor/bin/rector'
+alias sail='./vendor/bin/sail'
+alias db='lazysql "file:database/database.sqlite?loc=auto"'
 
 function weather() {
     location="${*:-Nürnberg}"

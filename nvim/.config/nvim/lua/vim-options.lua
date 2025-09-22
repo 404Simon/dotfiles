@@ -1,8 +1,3 @@
--- TODO: Migrate these where they belong:
-vim.keymap.set("n", "<leader>x", ":source %<CR>", { desc = "Source current file" })
-vim.keymap.set("n", "<leader>so", ":ObsidianOpen<CR>", { desc = "Open the file in Obsidian" })
--- END TODO
-
 vim.cmd("set expandtab")
 vim.cmd("set tabstop=2")
 vim.cmd("set softtabstop=2")
