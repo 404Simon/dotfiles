@@ -40,6 +40,8 @@ return {
 				"stimulus_ls",
 				"stylua",
 				"pint",
+				"black",
+				"isort",
 			}
 
 			for _, lsp in ipairs(servers) do

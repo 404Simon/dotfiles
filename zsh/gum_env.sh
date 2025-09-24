@@ -1,1 +1,0 @@
-export GUM_WRITE_CURSOR_FOREGROUND="#30defc"
