@@ -2,10 +2,11 @@ alias vim='nvim'
 alias t='tmux a || tmux'
 alias y='yazi'
 alias fzf='fzf --tmux 80%,80%'
+alias r='rmpc'
 alias artisan='php artisan'
 alias dev='eval "$(~/dotfiles/projectnavigator.sh)"'
 alias v='eval "$(~/dotfiles/vorlesungsnavigator.sh)"'
-alias o='source ~/dotfiles/obsidian_scripts.sh'
+alias o='cd "$OBSIDIAN_VAULT" && nvim'
 alias blog='~/dev/quartz/automation.sh'
 alias ls='eza --color=always --icons=always'
 eval "$(zoxide init zsh)"
@@ -16,6 +17,7 @@ alias pest='./vendor/bin/pest'
 alias rector='./vendor/bin/rector'
 alias sail='./vendor/bin/sail'
 alias db='lazysql "file:database/database.sqlite?loc=auto"'
+alias lyrics='/home/simon/dotfiles/lyric_search.py'
 
 function weather() {
     location="${*:-Nürnberg}"
