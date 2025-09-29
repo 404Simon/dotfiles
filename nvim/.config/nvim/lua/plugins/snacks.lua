@@ -22,6 +22,14 @@ return {
 						end,
 					},
 					{
+						icon = "",
+						key = "j",
+						desc = "Todays Journal",
+						action = function()
+							require("utils.obsidian").create_todays_journal_entry()
+						end,
+					},
+					{
 						icon = " ",
 						key = "g",
 						desc = "Grep",

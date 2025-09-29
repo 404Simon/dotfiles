@@ -42,6 +42,7 @@ return {
 				"pint",
 				"black",
 				"isort",
+				"jdtls",
 			}
 
 			for _, lsp in ipairs(servers) do

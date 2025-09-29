@@ -30,7 +30,7 @@ local function create_note_file(title)
 
 	local filename = title:gsub("%s+", "_") .. ".md"
 	filename = replace_umlauts(filename)
-	local target_path = vault_path .. "/" .. filename
+	local target_path = vault_path .. filename
 	local file = io.open(target_path, "r")
 	if file then
 		file:close()
@@ -68,6 +68,30 @@ function M.create_new_note()
 	Snacks.input({
 		prompt = "Note title: ",
 	}, create_note_file)
+end
+
+function M.create_todays_journal_entry()
+	local vault_path = os.getenv("OBSIDIAN_VAULT")
+	if not vault_path then
+		vim.notify("OBSIDIAN_VAULT environment variable not set", vim.log.levels.ERROR)
+		return
+	end
+
+	local date = os.date("%Y-%m-%d")
+	local note_path = vault_path .. "Journal/" .. date .. ".md"
+
+	local file = io.open(note_path, "r")
+	if not file then
+		local content = string.format("# Daily Note - %s\n\n[[Daily_Notes]]\n\n\n", date)
+
+		local file_handle = io.open(note_path, "w")
+		if file_handle then
+			file_handle:write(content)
+			file_handle:close()
+		end
+	end
+	vim.cmd("edit " .. vim.fn.fnameescape(note_path))
+	vim.cmd("normal! G")
 end
 
 return M
