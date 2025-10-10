@@ -18,9 +18,10 @@ alias rector='./vendor/bin/rector'
 alias sail='./vendor/bin/sail'
 alias db='lazysql "file:database/database.sqlite?loc=auto"'
 alias lyrics='/home/simon/dotfiles/lyric_search.py'
+alias c='calcure'
 
 function weather() {
-    location="${*:-Nürnberg}"
+    location="${*:-Erlangen}"
     location="${location// /+}"
     curl -s "wttr.in/$location" | sed '1d;$d;$d'
 }
