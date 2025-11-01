@@ -7,21 +7,21 @@
 
 window#waybar {
     background: transparent;
-    background-color: #282829; /* {< replace_color(colors.base) >} */
-    color: #848184; /* {< replace_color(colors.muted) >} */
+    background-color: #232225; /* {< replace_color(colors.base) >} */
+    color: #807d85; /* {< replace_color(colors.muted) >} */
     transition-property: background-color;
     transition-duration: 0.1s;
-    border-bottom: 1px solid #848184; /* {< replace_color(colors.muted) >} */
+    border-bottom: 1px solid #807d85; /* {< replace_color(colors.muted) >} */
 }
 
 
 tooltip {
-  background: #202021; /* {< replace_color(colors.surface) >} */
-  border: 1px solid #4f4f53; /* {< replace_color(colors.overlay) >} */
+  background: #1b1a1c; /* {< replace_color(colors.surface) >} */
+  border: 1px solid #4d4b51; /* {< replace_color(colors.overlay) >} */
   margin: 12px;
 }
 tooltip label {
-  color: #d8d3d1; /* {< replace_color(colors.text) >} */
+  color: #d4d0d2; /* {< replace_color(colors.text) >} */
 }
 
 #tray {
@@ -42,31 +42,31 @@ button {
 
 button:hover {
     background: inherit;
-    color: #cca8df; /* {< replace_color(colors.fg_magenta) >} */
-    border-top: 2px solid #cca8df; /* {< replace_color(colors.fg_magenta) >} */
+    color: #cfa7c3; /* {< replace_color(colors.fg_magenta) >} */
+    border-top: 2px solid #cfa7c3; /* {< replace_color(colors.fg_magenta) >} */
 }
 
 #workspaces button {
     padding: 0 4px;
-    color: #d8d3d1; /* {< replace_color(colors.text) >} */
-    background-color: #202021; /* {< replace_color(colors.surface) >} */
-    border-bottom: 1px solid #848184; /* {< replace_color(colors.muted) >} */
+    color: #d4d0d2; /* {< replace_color(colors.text) >} */
+    background-color: #1b1a1c; /* {< replace_color(colors.surface) >} */
+    border-bottom: 1px solid #807d85; /* {< replace_color(colors.muted) >} */
 }
 
 #workspaces button.focused {
     background-color: rgba(0, 0, 0, 0.3);
-    color: #d8d3d1; /* {< replace_color(colors.text) >} */
-    border-top: 2px solid #97baec; /* {< replace_color(colors.fg_accent_2) >} */
+    color: #d4d0d2; /* {< replace_color(colors.text) >} */
+    border-top: 2px solid #d0ad99; /* {< replace_color(colors.fg_accent_2) >} */
 }
 
 #workspaces button.active {
     background-color: rgba(0, 0, 0, 0.3);
-    color: #cca8df; /* {< replace_color(colors.fg_magenta) >} */
-    border-top: 2px solid #cca8df; /* {< replace_color(colors.fg_magenta) >} */
+    color: #cfa7c3; /* {< replace_color(colors.fg_magenta) >} */
+    border-top: 2px solid #cfa7c3; /* {< replace_color(colors.fg_magenta) >} */
 }
 
 #workspaces button.urgent {
-    background-color: #eca393; /* {< replace_color(colors.fg_red) >} */
+    background-color: #e59db3; /* {< replace_color(colors.fg_red) >} */
 }
 
 #pulseaudio,
@@ -92,42 +92,42 @@ button:hover {
 }
 
 #clock {
-    color: #cca8df; /* {< replace_color(colors.fg_accent_1) >} */
-    border-bottom: 2px solid #cca8df; /* {< replace_color(colors.fg_accent_1) >} */
+    color: #baadd7; /* {< replace_color(colors.fg_accent_1) >} */
+    border-bottom: 2px solid #baadd7; /* {< replace_color(colors.fg_accent_1) >} */
 }
 
 #clock.date {
-    color: #cca8df; /* {< replace_color(colors.fg_accent_1) >} */
-    border-bottom: 2px solid #cca8df; /* {< replace_color(colors.fg_accent_1) >} */
+    color: #baadd7; /* {< replace_color(colors.fg_accent_1) >} */
+    border-bottom: 2px solid #baadd7; /* {< replace_color(colors.fg_accent_1) >} */
 }
 
 #pulseaudio {
-    color: #97baec; /* {< replace_color(colors.fg_blue) >} */
-    border-bottom: 2px solid #97baec; /* {< replace_color(colors.fg_blue) >} */
+    color: #9db8d9; /* {< replace_color(colors.fg_blue) >} */
+    border-bottom: 2px solid #9db8d9; /* {< replace_color(colors.fg_blue) >} */
 }
 
 #bluetooth {
-    color: #7bc6cf; /* {< replace_color(colors.fg_cyan) >} */
-    border-bottom: 2px solid #7bc6cf; /* {< replace_color(colors.fg_cyan) >} */
+    color: #90bec7; /* {< replace_color(colors.fg_cyan) >} */
+    border-bottom: 2px solid #90bec7; /* {< replace_color(colors.fg_cyan) >} */
 }
 
 #network {
-    color: #ceb57f; /* {< replace_color(colors.fg_yellow) >} */
-    border-bottom: 2px solid #ceb57f; /* {< replace_color(colors.fg_yellow) >} */
+    color: #bbb884; /* {< replace_color(colors.fg_yellow) >} */
+    border-bottom: 2px solid #bbb884; /* {< replace_color(colors.fg_yellow) >} */
 }
 
 #idle_inhibitor {
     margin-right: 12px;
-    color: #a8c290; /* {< replace_color(colors.fg_green) >} */
+    color: #aebb99; /* {< replace_color(colors.fg_green) >} */
 }
 
 #idle_inhibitor.activated {
-    color: #eca393; /* {< replace_color(colors.fg_red) >} */
+    color: #e59db3; /* {< replace_color(colors.fg_red) >} */
 }
 
 #battery {
-    color: #a8c290; /* {< replace_color(colors.fg_green) >} */
-    border-bottom: 2px solid #a8c290; /* {< replace_color(colors.fg_green) >} */
+    color: #aebb99; /* {< replace_color(colors.fg_green) >} */
+    border-bottom: 2px solid #aebb99; /* {< replace_color(colors.fg_green) >} */
 }
 
 /* If workspaces is the leftmost module, omit left margin */
@@ -141,20 +141,20 @@ button:hover {
 }
 
 #custom-vpn {
-    color: #e8a596; /* {< replace_color(colors.fg_accent_3) >} */
+    color: #9db8d9; /* {< replace_color(colors.fg_accent_3) >} */
     border-radius: 15px;
     padding-left: 6px;
     padding-right: 6px;
 }
 
 #custom-media {
-    color: #a8c290; /* {< replace_color(colors.fg_accent_5) >} */
+    color: #d5a7b4; /* {< replace_color(colors.fg_accent_5) >} */
 }
 
 #custom-weather {
-    color: #ceb57f; /* {< replace_color(colors.fg_yellow) >} */
+    color: #bbb884; /* {< replace_color(colors.fg_yellow) >} */
 }
 
 #custom-ram {
-    color: #ceb57f; /* {< replace_color(colors.fg_accent_4) >} */
+    color: #b2b99a; /* {< replace_color(colors.fg_accent_4) >} */
 }

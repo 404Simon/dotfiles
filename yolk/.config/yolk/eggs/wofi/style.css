@@ -9,9 +9,9 @@
 window {
   margin: 0px;
   padding: 10px;
-  border: 2px solid #cca8df; /* {< replace_color(colors.fg_accent_1) >} */
+  border: 2px solid #baadd7; /* {< replace_color(colors.fg_accent_1) >} */
   border-radius: 8px;
-  background-color: #282829; /* {< replace_color(colors.base) >} */
+  background-color: #232225; /* {< replace_color(colors.base) >} */
 }
 
 /* Inner Box */
@@ -19,7 +19,7 @@ window {
   margin: 5px;
   padding: 10px;
   border: none;
-  background-color: #282829; /* {< replace_color(colors.base) >} */
+  background-color: #232225; /* {< replace_color(colors.base) >} */
 }
 
 /* Outer Box */
@@ -27,7 +27,7 @@ window {
   margin: 5px;
   padding: 10px;
   border: none;
-  background-color: #282829; /* {< replace_color(colors.base) >} */
+  background-color: #232225; /* {< replace_color(colors.base) >} */
 }
 
 /* Scroll */
@@ -35,7 +35,7 @@ window {
   margin: 0px;
   padding: 10px;
   border: none;
-  background-color: #282829; /* {< replace_color(colors.base) >} */
+  background-color: #232225; /* {< replace_color(colors.base) >} */
 }
 
 /* Input */
@@ -44,44 +44,44 @@ window {
   padding: 10px;
   border: none;
   border-radius: 0.1em;
-  color: #d8d3d1; /* {< replace_color(colors.text) >} */
-  background-color: #282829; /* {< replace_color(colors.base) >} */
+  color: #d4d0d2; /* {< replace_color(colors.text) >} */
+  background-color: #232225; /* {< replace_color(colors.base) >} */
 }
 
 #input image {
     border: none;
-    color: #eca393; /* {< replace_color(colors.fg_red) >} */
+    color: #e59db3; /* {< replace_color(colors.fg_red) >} */
 }
 
 #input * {
-  outline: 4px solid #eca393; /* {< replace_color(colors.fg_red) >} */!important;
+  outline: 4px solid #e59db3; /* {< replace_color(colors.fg_red) >} */!important;
 }
 
 /* Text */
 #text {
   margin: 5px;
   border: none;
-  color: #d8d3d1; /* {< replace_color(colors.text) >} */
+  color: #d4d0d2; /* {< replace_color(colors.text) >} */
 }
 
 #entry {
-  background-color: #282829; /* {< replace_color(colors.base) >} */
+  background-color: #232225; /* {< replace_color(colors.base) >} */
 }
 
 #entry arrow {
   border: none;
-  color: #97baec; /* {< replace_color(colors.fg_accent_2) >} */
+  color: #d0ad99; /* {< replace_color(colors.fg_accent_2) >} */
 }
 
 /* Selected Entry */
 #entry:selected {
-  border: 0.11em solid #97baec; /* {< replace_color(colors.fg_accent_2) >} */
+  border: 0.11em solid #d0ad99; /* {< replace_color(colors.fg_accent_2) >} */
 }
 
 #entry:selected #text {
-  color: #cca8df; /* {< replace_color(colors.fg_accent_1) >} */
+  color: #baadd7; /* {< replace_color(colors.fg_accent_1) >} */
 }
 
 #entry:drop(active) {
-  background-color: #e8a596; /* {< replace_color(colors.fg_accent_3) >} */!important;
+  background-color: #9db8d9; /* {< replace_color(colors.fg_accent_3) >} */!important;
 }

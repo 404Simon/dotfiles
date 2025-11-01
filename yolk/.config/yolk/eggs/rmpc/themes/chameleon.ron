@@ -6,31 +6,31 @@
     show_song_table_header: true,
     draw_borders: true,
     browser_column_widths: [20, 38, 42],
-    background_color: "#282829", // {< replace_color(colors.base) >}
-    text_color: "#d8d3d1", // {< replace_color(colors.text) >}
+    background_color: "#232225", // {< replace_color(colors.base) >}
+    text_color: "#d4d0d2", // {< replace_color(colors.text) >}
     header_background_color: None,
-    modal_background_color: "#202021", // {< replace_color(colors.surface) >}
+    modal_background_color: "#1b1a1c", // {< replace_color(colors.surface) >}
     tab_bar: (
         enabled: true,
-        active_style: (fg: "#282829", bg: "#f29b8b", modifiers: "Bold"), // {< replace_color(colors.base) >} // {< replace_color(colors.fg_accent_1) >}
+        active_style: (fg: "#232225", bg: "#f29b8b", modifiers: "Bold"), // {< replace_color(colors.base) >} // {< replace_color(colors.fg_accent_1) >}
         inactive_style: (),
     ),
-    highlighted_item_style: (fg: "#cca8df", modifiers: "Bold"), // {< replace_color(colors.fg_accent_1) >}
-    current_item_style: (fg: "#282829", bg: "#f29b8b", modifiers: "Bold"), // {< replace_color(colors.base) >} // {< replace_color(colors.fg_accent_1) >}
-    borders_style: (fg: "#7bc6cf"), // {< replace_color(colors.fg_accent_6) >}
-    highlight_border_style: (fg: "#7bc6cf"), // {< replace_color(colors.fg_accent_6) >}
+    highlighted_item_style: (fg: "#baadd7", modifiers: "Bold"), // {< replace_color(colors.fg_accent_1) >}
+    current_item_style: (fg: "#232225", bg: "#f29b8b", modifiers: "Bold"), // {< replace_color(colors.base) >} // {< replace_color(colors.fg_accent_1) >}
+    borders_style: (fg: "#90bec7"), // {< replace_color(colors.fg_accent_6) >}
+    highlight_border_style: (fg: "#90bec7"), // {< replace_color(colors.fg_accent_6) >}
     symbols: (song: "󰎇", dir: "󰉋", marker: " ", ellipsis: "..."),
     progress_bar: (
         symbols: ["", "", " "],
-        track_style: (fg: "#2e2e30"), // {< replace_color(colors.highlight) >}
-        elapsed_style: (fg: "#cca8df"), // {< replace_color(colors.fg_accent_1) >}
-        thumb_style: (fg: "#cca8df", bg: "#3a211e"), // {< replace_color(colors.fg_accent_1) >} // {< replace_color(colors.highlight) >}
+        track_style: (fg: "#29282b"), // {< replace_color(colors.highlight) >}
+        elapsed_style: (fg: "#baadd7"), // {< replace_color(colors.fg_accent_1) >}
+        thumb_style: (fg: "#baadd7", bg: "#3a211e"), // {< replace_color(colors.fg_accent_1) >} // {< replace_color(colors.highlight) >}
     ),
     scrollbar: (
         symbols: ["│", "█", "▲", "▼"],
         track_style: (),
         ends_style: (),
-        thumb_style: (fg: "#7bc6cf"), // {< replace_color(colors.fg_accent_6) >}
+        thumb_style: (fg: "#90bec7"), // {< replace_color(colors.fg_accent_6) >}
     ),
     song_table_format: [ // view in the queue
         (
@@ -46,8 +46,8 @@
             width: "55%",
         ),
         (
-            prop: (kind: Property(Album), style: (fg: "#d8d3d1"), // {< replace_color(colors.text) >}
-                default: (kind: Text("Unknown Album"), style: (fg: "#d8d3d1")) // {< replace_color(colors.text) >}
+            prop: (kind: Property(Album), style: (fg: "#d4d0d2"), // {< replace_color(colors.text) >}
+                default: (kind: Text("Unknown Album"), style: (fg: "#d4d0d2")) // {< replace_color(colors.text) >}
             ),
             width: "20%",
         ),
@@ -90,9 +90,9 @@
         rows: [
             (
                 left: [
-                     (kind: Text("["), style: (fg: "#97baec", modifiers: "Bold")), // {< replace_color(colors.fg_accent_2) >}
-                    (kind: Property(Status(StateV2(playing_label: "Playing", paused_label: "Paused", stopped_label: "Stopped"))), style: (fg: "#97baec", modifiers: "Bold")), // {< replace_color(colors.fg_accent_2) >}
-                    (kind: Text("]"), style: (fg: "#97baec", modifiers: "Bold")) // {< replace_color(colors.fg_accent_2) >}
+                     (kind: Text("["), style: (fg: "#d0ad99", modifiers: "Bold")), // {< replace_color(colors.fg_accent_2) >}
+                    (kind: Property(Status(StateV2(playing_label: "Playing", paused_label: "Paused", stopped_label: "Stopped"))), style: (fg: "#d0ad99", modifiers: "Bold")), // {< replace_color(colors.fg_accent_2) >}
+                    (kind: Text("]"), style: (fg: "#d0ad99", modifiers: "Bold")) // {< replace_color(colors.fg_accent_2) >}
                 ],
                 center: [
                     (kind: Property(Song(Title)), style: (modifiers: "Bold"),
@@ -100,7 +100,7 @@
                     )
                 ],
                 right: [
-                    (kind: Property(Widget(Volume)), style: (fg: "#7bc6cf")) // {< replace_color(colors.fg_accent_6) >}
+                    (kind: Property(Widget(Volume)), style: (fg: "#90bec7")) // {< replace_color(colors.fg_accent_6) >}
                 ]
             ),
             (
@@ -110,11 +110,13 @@
                     (kind: Property(Status(Duration))),
                     (kind: Text(" (")),
                     (kind: Property(Status(Bitrate))),
-                    (kind: Text(" kbps)"))
+                    (kind: Text(" kbps) [xfade: ")),
+                    (kind: Property(Status(Crossfade))),
+                    (kind: Text("s]"))
                 ],
                 center: [
-                    (kind: Property(Song(Artist)), style: (fg: "#97baec", modifiers: "Bold"), // {< replace_color(colors.fg_accent_2) >}
-                        default: (kind: Text("Unknown"), style: (fg: "#97baec", modifiers: "Bold")) // {< replace_color(colors.fg_accent_2) >}
+                    (kind: Property(Song(Artist)), style: (fg: "#d0ad99", modifiers: "Bold"), // {< replace_color(colors.fg_accent_2) >}
+                        default: (kind: Text("Unknown"), style: (fg: "#d0ad99", modifiers: "Bold")) // {< replace_color(colors.fg_accent_2) >}
                     ),
                     (kind: Text(" - ")),
                     (kind: Property(Song(Album)),
@@ -124,10 +126,10 @@
                 right: [
                     (
                         kind: Property(Widget(States(
-                            active_style: (fg: "#d8d3d1", modifiers: "Bold"), // {< replace_color(colors.text) >}
-                            separator_style: (fg: "#d8d3d1"))) // {< replace_color(colors.text) >}
+                            active_style: (fg: "#d4d0d2", modifiers: "Bold"), // {< replace_color(colors.text) >}
+                            separator_style: (fg: "#d4d0d2"))) // {< replace_color(colors.text) >}
                         ),
-                        style: (fg: "#848184") // {< replace_color(colors.muted) >}
+                        style: (fg: "#807d85") // {< replace_color(colors.muted) >}
                     ),
                 ]
             ),

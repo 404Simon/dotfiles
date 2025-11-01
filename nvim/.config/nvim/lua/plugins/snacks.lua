@@ -22,6 +22,14 @@ return {
 						end,
 					},
 					{
+						icon = " ",
+						key = "m",
+						desc = "Find Modul",
+						action = function()
+							Snacks.picker.files({ pattern = "Modul " })
+						end,
+					},
+					{
 						icon = "",
 						key = "j",
 						desc = "Todays Journal",
@@ -74,14 +82,21 @@ return {
 			function()
 				Snacks.picker.pick("files")
 			end,
-			desc = "Find Files",
+			desc = "Search Files",
+		},
+		{
+			"<leader>sm",
+			function()
+				Snacks.picker.files({ pattern = "Modul " })
+			end,
+			desc = "Search Modul",
 		},
 		{
 			"<leader>sr",
 			function()
 				Snacks.picker.recent()
 			end,
-			desc = "Recent Files",
+			desc = "Search Recent",
 		},
 		{
 			"<leader><leader>",
@@ -95,7 +110,7 @@ return {
 			function()
 				Snacks.picker.grep()
 			end,
-			desc = "Grep Files",
+			desc = "Search Grep",
 		},
 	},
 }

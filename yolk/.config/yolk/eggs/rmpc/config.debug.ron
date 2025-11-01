@@ -6,7 +6,6 @@
     cache_dir: Some("/tmp/rmpc/cache"),
     lyrics_dir: Some("~/Music/mpd/lyrics"),
     password: None,
-    theme: "chameleon",
     volume_step: 5,
     max_fps: 30,
     scrolloff: 0,
@@ -26,6 +25,7 @@
         global: {
             ":":       CommandMode,
             ",":       VolumeDown,
+            "-":       VolumeSideways,
             "s":       Stop,
             ".":       VolumeUp,
             "<Tab>":   NextTab,
@@ -52,8 +52,6 @@
             "I":       ShowCurrentSongInfo,
             "O":       ShowOutputs,
             "P":       ShowDecoders,
-            "<C-Left>": CrossfadeDown,
-            "<C-Right>": CrossfadeUp,
         },
         navigation: {
             "k":         Up,
