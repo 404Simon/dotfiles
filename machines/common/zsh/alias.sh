@@ -1,4 +1,6 @@
 alias vim='nvim'
+zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.pdf'
+zstyle ':completion:*:*:nvim:*:*files' ignored-patterns '*.pdf'
 alias t='tmux a || tmux'
 alias y='yazi'
 alias fzf='fzf --tmux 80%,80%'
