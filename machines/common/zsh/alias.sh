@@ -1,6 +1,6 @@
 alias vim='nvim'
-zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.pdf'
-zstyle ':completion:*:*:nvim:*:*files' ignored-patterns '*.pdf'
+zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.pdf' '*.class'
+zstyle ':completion:*:*:nvim:*:*files' ignored-patterns '*.pdf' '*.class'
 alias t='tmux a || tmux'
 alias y='yazi'
 alias fzf='fzf --tmux 80%,80%'
@@ -21,6 +21,7 @@ alias sail='./vendor/bin/sail'
 alias db='lazysql "file:database/database.sqlite?loc=auto"'
 alias lyrics='/home/simon/dotfiles/lyric_search.py'
 alias c='calcure'
+alias n='newsboat'
 
 function weather() {
     location="${*:-Erlangen}"
