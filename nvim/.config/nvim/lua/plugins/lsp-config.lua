@@ -28,6 +28,11 @@ return {
 				cmp_nvim_lsp.default_capabilities()
 			)
 
+			local inlay_hints = {
+				enabled = true,
+				exclude = {},
+			}
+
 			local servers = {
 				"tailwindcss",
 				"lua_ls",
@@ -45,19 +50,62 @@ return {
 				"jdtls",
 			}
 
+			local server_settings = {
+				lua_ls = {
+					settings = {
+						Lua = {
+							hint = {
+								enable = true,
+								setType = false,
+								paramType = true,
+								paramName = "Disable",
+								semicolon = "Disable",
+								arrayIndex = "Disable",
+							},
+						},
+					},
+				},
+			}
+
 			for _, lsp in ipairs(servers) do
-				vim.lsp.config(lsp, {
+				local config = {
 					capabilities = capabilities,
-				})
+				}
+				-- Merge server-specific settings if they exist
+				if server_settings[lsp] then
+					config = vim.tbl_deep_extend("force", config, server_settings[lsp])
+				end
+				vim.lsp.config(lsp, config)
 			end
 
 			require("mason-tool-installer").setup({ ensure_installed = servers })
+
+			-- Enable inlay hints
+			if inlay_hints.enabled then
+				local snacks_ok, snacks = pcall(require, "snacks")
+				if snacks_ok and snacks.util and snacks.util.lsp then
+					snacks.util.lsp.on({ method = "textDocument/inlayHint" }, function(buffer)
+						if
+							vim.api.nvim_buf_is_valid(buffer)
+							and vim.bo[buffer].buftype == ""
+							and not vim.tbl_contains(inlay_hints.exclude, vim.bo[buffer].filetype)
+						then
+							vim.lsp.inlay_hint.enable(true, { bufnr = buffer })
+						end
+					end)
+				end
+			end
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 			vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
 			vim.keymap.set("n", "ca", vim.lsp.buf.code_action, {})
 			vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, {})
+			vim.keymap.set("n", "<leader>th", function()
+				local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
+				vim.lsp.inlay_hint.enable(not enabled, { bufnr = 0 })
+				vim.notify("Inlay hints " .. (enabled and "disabled" or "enabled"))
+			end, { desc = "Toggle inlay hints" })
 		end,
 	},
 	{
