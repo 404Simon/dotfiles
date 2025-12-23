@@ -1,0 +1,70 @@
+position = "top"
+height = 20
+name = "top"
+
+[[start]]
+type = "workspaces"
+
+[[center]]
+type = "music"
+player_type = "mpd"
+host = "/home/simon/.mpd/socket"
+
+[start.icons]
+play = ""
+pause = ""
+
+[[end]]
+type = "battery"
+format = "{percentage}%"
+
+[end.thresholds]
+warning = 20
+critical = 5
+
+[[end]]
+type = "bluetooth"
+icon_size = 32
+
+[end.format]
+not_found = ""
+disabled = " Off"
+enabled = " On"
+connected = " {device_alias}"
+connected_battery = " {device_alias} • {device_battery_percent}%"
+
+[end.popup]
+max_height.devices = 5
+header = " Enable Bluetooth"
+disabled = "{adapter_status}"
+
+[end.popup.device]
+header = "{device_alias}"
+header_battery = "{device_alias}"
+footer = "{device_status}"
+footer_battery = "{device_status} • Battery {device_battery_percent}%"
+
+[end.adapter_status]
+not_found = "No Bluetooth adapters found"
+enabled = "Bluetooth enabled"
+enabling = "Enabling Bluetooth..."
+disabled = "Bluetooth disabled"
+disabling = "Disabling Bluetooth..."
+
+[end.device_status]
+connected = "Connected"
+connecting = "Connecting..."
+disconnected = "Disconnect"
+disconnecting = "Disconnecting..."
+
+[[end]]
+type = "volume"
+
+[[end]]
+type = "tray"
+
+[[end]]
+type = "clock"
+
+[[end]]
+type = "notifications"

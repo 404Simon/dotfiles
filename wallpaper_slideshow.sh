@@ -12,7 +12,7 @@ export HYPRLAND_INSTANCE_SIGNATURE="$HIS"
 # export the Wayland display name
 export WAYLAND_DISPLAY="${WAYLAND_DISPLAY:-wayland-0}"
 
-WALLPAPER_DIR="/home/simon/dotfiles/wallpapers/gta"
+WALLPAPER_DIR="/home/simon/dotfiles/wallpapers/matt.bower"
 
 HOUR=$(date +%H)
 
@@ -34,7 +34,11 @@ WALLPAPER=$(find "$WALLPAPER_SUBDIR" -type f ! -name "$CURRENT_WALL" | shuf -n 1
 
 # Apply the selected wallpaper
 if [ -n "$WALLPAPER" ]; then
+    echo $WALLPAPER
     hyprctl hyprpaper reload ,"$WALLPAPER"
+    /home/simon/.cargo/bin/thaimeleon "$WALLPAPER" -w ~/.config/yolk/chameleon.rhai
+    /usr/bin/yolk sync
+
 else
     echo "No wallpaper found in $WALLPAPER_SUBDIR (excluding current: $CURRENT_WALL)"
 fi
