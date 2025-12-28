@@ -11,10 +11,10 @@ export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # only works with jdk switcher script
-export JAVA_HOME="$HOME/.jdks/selected_java/java"
-export GRAAL_HOME="$HOME/.jdks/selected_java/java"
-export GRAALVM_HOME="$HOME/.jdks/selected_java/java"
-export PATH="$HOME/.jdks/selected_java/java/bin:$PATH"
+# export JAVA_HOME="$HOME/.jdks/selected_java/java"
+# export GRAAL_HOME="$HOME/.jdks/selected_java/java"
+# export GRAALVM_HOME="$HOME/.jdks/selected_java/java"
+# export PATH="$HOME/.jdks/selected_java/java/bin:$PATH"
 
 eval $(laravel completion)
 

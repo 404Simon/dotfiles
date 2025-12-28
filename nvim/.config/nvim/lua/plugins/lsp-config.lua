@@ -47,7 +47,7 @@ return {
 				"pint",
 				"black",
 				"isort",
-				"jdtls",
+				-- jdtls is configured separately
 			}
 
 			local server_settings = {
