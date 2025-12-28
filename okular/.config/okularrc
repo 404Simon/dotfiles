@@ -34,29 +34,32 @@ IconSize=16
 Units=in
 
 [Recent Files]
-File1[$e]=$HOME/Vorlesungen/Verteilte_Systeme/Verteilte Systeme 2025.pdf
-File10[$e]=/mnt/windows/Backup/2023-01-07/VL4/Übungen_und_Lösungen_4_am_01.12.2022.pdf
-File2[$e]=$HOME/Vorlesungen/Verteilte_Systeme/pieces/einfuehrung_und_architektur.pdf
-File3[$e]=$HOME/Vorlesungen/Verteilte_Systeme/pieces/prozesse_und_ipc.pdf
-File4[$e]=$HOME/Vorlesungen/Verteilte_Systeme/pieces/namensraeume.pdf
-File5[$e]=$HOME/dev/DHBW-Typst-Template/main.pdf
-File6[$e]=$HOME/Dokumente/Ausweis.pdf
-File7[$e]=$HOME/Dokumente/2003-01-25 Ausweis_vorn.pdf
-File8[$e]=$HOME/Dokumente/ausweis.pdf
-File9[$e]=$HOME/Dokumente/unbedenklichkeitsbescheinigung.pdf
-Name1[$e]=Verteilte Systeme 2025.pdf
-Name10[$e]=Übungen_und_Lösungen_4_am_01.12.2022.pdf
-Name2[$e]=einfuehrung_und_architektur.pdf
-Name3[$e]=prozesse_und_ipc.pdf
-Name4[$e]=namensraeume.pdf
-Name5[$e]=main.pdf
-Name6[$e]=Ausweis.pdf
-Name7[$e]=2003-01-25 Ausweis_vorn.pdf
-Name8[$e]=ausweis.pdf
-Name9[$e]=unbedenklichkeitsbescheinigung.pdf
+File1[$e]=$HOME/Vorlesungen/Verteilte_Systeme/pieces/prozesse_und_ipc.pdf
+File10[$e]=$HOME/Vorlesungen/Deep_Learning/exercises/exercise3_material/Implementation.pdf
+File2[$e]=$HOME/Vorlesungen/Verteilte_Systeme/pieces/namensraeume.pdf
+File3[$e]=$HOME/dev/DHBW-Typst-Template/main.pdf
+File4[$e]=$HOME/Dokumente/Ausweis.pdf
+File5[$e]=$HOME/Dokumente/2003-01-25 Ausweis_vorn.pdf
+File6[$e]=$HOME/Dokumente/ausweis.pdf
+File7[$e]=$HOME/Dokumente/unbedenklichkeitsbescheinigung.pdf
+File8[$e]=/mnt/windows/Backup/2023-01-07/VL4/Übungen_und_Lösungen_4_am_01.12.2022.pdf
+File9[$e]=$HOME/Vorlesungen/Deep_Learning/exercises/exercise3_material/Description.pdf
+Name1[$e]=prozesse_und_ipc.pdf
+Name10[$e]=Implementation.pdf
+Name2[$e]=namensraeume.pdf
+Name3[$e]=main.pdf
+Name4[$e]=Ausweis.pdf
+Name5[$e]=2003-01-25 Ausweis_vorn.pdf
+Name6[$e]=ausweis.pdf
+Name7[$e]=unbedenklichkeitsbescheinigung.pdf
+Name8[$e]=Übungen_und_Lösungen_4_am_01.12.2022.pdf
+Name9[$e]=Description.pdf
 
 [Toolbar mainToolBar]
 IconSize=16
+
+[UiSettings]
+ColorScheme=BreezeDark
 
 [calligra]
 DockerPlugins=calligra_docker_defaults,calligra_docker_stencils

@@ -164,3 +164,15 @@ button:hover, button:active {
 .popup-volume .apps-box .app-box .btn-mute:hover {
     background-color: var(--color-dark-primary);
 }
+
+/* Music Widget */
+.music .slider trough {
+    background-color: rgba(255, 255, 255, 0.1);
+    min-height: 4px;
+    min-width: 5px;
+}
+
+.music .slider highlight {
+    background-color: var(--color-active);
+    min-height: 4px;
+}

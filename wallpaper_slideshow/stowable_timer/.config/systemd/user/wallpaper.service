@@ -1,0 +1,10 @@
+[Unit]
+Description=Changes the Wallpaper
+
+[Service]
+Type=oneshot
+Environment="WALLPAPER_DIR=/home/simon/dotfiles/wallpaper_slideshow/wallpapers/norway"
+Environment="WALLPAPER_HISTORY_LOG=/home/simon/.cache/wallpaper_history.log"
+Environment="WALLPAPER_CACHE_DB=/home/simon/.cache/wallpaper_exif_cache.db"
+ExecStart=/home/simon/dev/wallpaper_slideshow/target/release/wallpaper_slideshow
+
