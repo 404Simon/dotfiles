@@ -38,6 +38,8 @@ return {
 		local extendedClientCapabilities = jdtls.extendedClientCapabilities
 		extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
+		local lombok_jar = jdtls_dir .. "/lombok.jar"
+
 		local config = {
 			cmd = {
 				"java",
@@ -52,6 +54,8 @@ return {
 				"java.base/java.util=ALL-UNNAMED",
 				"--add-opens",
 				"java.base/java.lang=ALL-UNNAMED",
+				"-javaagent:" .. lombok_jar,
+				"-Xbootclasspath/a:" .. lombok_jar,
 				"-jar",
 				launcher_jar,
 				"-configuration",
