@@ -4,6 +4,8 @@ alias open='xdg-open'
 alias todo='vim ~/Vorlesungen/TODO.md'
 alias b='bg && disown'
 alias winfo='/home/simon/dev/wallpaper_slideshow/target/release/wallpaper-info'
+alias shutdown='pangolin down; systemctl poweroff'
+alias reboot='pangolin down; systemctl reboot'
 
 op() {
     xdg-open "$@" >/dev/null 2>&1 &
